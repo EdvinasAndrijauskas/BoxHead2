@@ -1,48 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Numerics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
 
 public class ShootingReyCast : MonoBehaviour
-{   
-    public Transform firePoint;
-  //  public int damage = 40;
-   // public GameObject impactEffect;
-    public LineRenderer lineRenderer;
-	
+{
+    [SerializeField]
+    Transform firePoint;
+    [SerializeField]
+    GameObject bulletPrefab;
+    public float bulletForce = 20f;
+    public float range = 100f; 
+    public float timeToDestroy = 3f;
+
     // Update is called once per frame
-    void Update () {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            StartCoroutine(Shoot());
-        }
-    }
-
-    IEnumerator Shoot ()
+    void Update ()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-
-        if (hitInfo)
+        if (Input.GetButtonDown("Shoot"))
         {
-            // Enemy enemy = hitInfo.transform.GetComponent<Enemy>();
-            // if (enemy != null)
-            // {
-            //     enemy.TakeDamage(damage);
-            // }
+           Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
 
-           // Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
+           //Use debug with gizmo
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * 10f, Color.red);
+            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.up),range);
+            if (hit)
+            {
+                Debug.Log("HIT SOMETING : " + hit.collider.name);
+                hit.transform.GetComponent<SpriteRenderer>().color = Color.red;
+            }
 
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, hitInfo.point);
-        } else
+            /*Vector2 hitPosition = hit.point;
+            ShootBullet(hitPosition);*/
+        }
+    }
+
+    /*void ShootBullet(Vector2 hitPosition)
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        
+        LineRenderer line = bullet.GetComponent<LineRenderer>();
+        if (line != null)
         {
-            lineRenderer.SetPosition(0, firePoint.position);
-            lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+            line.SetPosition(0,firePoint.position);
+            line.SetPosition(1,hitPosition);
+
         }
 
-        lineRenderer.enabled = true;
-
-        yield return 0;
-
-        lineRenderer.enabled = false;
-    }
+        Destroy(bullet, 3f);
+    }*/
 }

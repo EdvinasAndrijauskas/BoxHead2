@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 1116841007}
   - component: {fileID: 1116841006}
   - component: {fileID: 1116841009}
+  - component: {fileID: 1116841010}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -312,7 +313,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1116841005}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc17e7158f0039d4c9c410897a1cb24a, type: 3}
   m_Name: 
@@ -321,6 +322,20 @@ MonoBehaviour:
   bulletPrefab: {fileID: 919837854350455340, guid: 4f00cf9ed6695b24ca1db6462b77b68b,
     type: 3}
   bulletForce: 60
+--- !u!114 &1116841010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116841005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80dcff1a4887e6a41ba10f966a04be8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 0}
+  lineRenderer: {fileID: 0}
 --- !u!1 &1580768750
 GameObject:
   m_ObjectHideFlags: 0
