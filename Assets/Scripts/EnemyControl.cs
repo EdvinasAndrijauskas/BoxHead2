@@ -28,12 +28,12 @@ public class EnemyControl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("PLEASE TRIGGER");
         switch (col.collider.tag)
         {
             case "Soldier": 
+                Debug.Log("SUPPOSED SOLDER DEADD");
+
                 EnemySpawner.spawnAllowed = false;
-                Debug.Log("SUPPOSED TGO BE DEAD");
                 Destroy(col.gameObject);
                 target = null;
                 break;
@@ -41,7 +41,6 @@ public class EnemyControl : MonoBehaviour
                 //add score how many dier?
                 Destroy(col.gameObject);
                 Destroy(gameObject);
-                Debug.Log("SUPPOSED TGO BE DEAD");
                 break;
         }
     }

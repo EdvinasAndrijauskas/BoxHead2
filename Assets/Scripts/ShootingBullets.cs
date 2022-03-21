@@ -11,7 +11,7 @@ public float bulletForce = 20f;
 // Update is called once per frame
 void Update()
 {
-    if (Input.GetButtonDown("ShootMain"))
+    if (Input.GetButtonDown("Shoot"))
     {
         Shoot();
     }
