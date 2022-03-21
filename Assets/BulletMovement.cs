@@ -13,13 +13,12 @@ public class BulletMovement : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(Vector2.up * Time.deltaTime * speed);   
+        transform.Translate(Vector3.up * (Time.deltaTime * speed));   
     }
 
     IEnumerator AutoDestroy(float time)
     {
         yield return new WaitForSeconds(time);
-        
         Destroy(gameObject);
     }
 }
