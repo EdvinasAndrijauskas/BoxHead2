@@ -12,19 +12,31 @@ public class EnemyControl : MonoBehaviour
     private GameObject target;
     private float moveSpeed;
     Vector2 directionToTarget;
+    private Animator anim;
+    
     //[SerializeField] private GameObject explosion;
     void Start()
     {
+        anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Soldier");
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = Random.Range(1f, 3f);
+        anim.SetFloat("Speed", moveSpeed );
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 direction = target.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        rb.rotation = angle;
+    }
+    void FixedUpdate()
+    {
         MoveMonster();
     }
+
 
     private void OnCollisionEnter2D(Collision2D col)
     {
@@ -57,4 +69,5 @@ public class EnemyControl : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
     }
+
 }
