@@ -12,12 +12,19 @@ public class EnemyControl : MonoBehaviour
     private GameObject target;
     private float moveSpeed;
     Vector2 directionToTarget;
+    HealthSystem healthSystem;
+    public Transform HealthBar;
     //[SerializeField] private GameObject explosion;
     void Start()
     {
         target = GameObject.FindWithTag("Soldier");
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = Random.Range(1f, 3f);
+         healthSystem = new HealthSystem(100);
+         Transform healthBarTransform = Instantiate(HealthBar, new Vector3(0, 10), Quaternion.identity);
+        HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
+        healthBar.SetUp(healthSystem);
+        Debug.Log("Health: " + healthSystem.GetHealthPercent());
     }
 
     // Update is called once per frame
@@ -30,17 +37,18 @@ public class EnemyControl : MonoBehaviour
     {
         switch (col.collider.tag)
         {
-            case "Soldier": 
+            case "Soldier":
                 Debug.Log("SUPPOSED SOLDER DEADD");
-
+                healthSystem.Damage(50);
                 EnemySpawner.spawnAllowed = false;
-                Destroy(col.gameObject);
+                // Destroy(col.gameObject);
                 target = null;
                 break;
             case "Bullet":
                 //add score how many dier?
-                Destroy(col.gameObject);
-                Destroy(gameObject);
+                healthSystem.Damage(20);
+                // Destroy(col.gameObject);
+                // Destroy(gameObject);
                 break;
         }
     }
