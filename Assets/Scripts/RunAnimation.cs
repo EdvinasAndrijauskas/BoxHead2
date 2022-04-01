@@ -19,6 +19,7 @@ public class RunAnimation : MonoBehaviour
     {
         moveH = Input.GetAxis("Horizontal");
         moveV = Input.GetAxis("Vertical");
+   
     }
 
     void FixedUpdate()
