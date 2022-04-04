@@ -15,9 +15,7 @@ void Update()
     {
         Shoot();
     }
-        
 }
-
 void Shoot()
 {
     GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
