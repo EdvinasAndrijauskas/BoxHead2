@@ -3,8 +3,6 @@ using Random = UnityEngine.Random;
 
 public class ZombieEnemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     private Rigidbody2D rb;
     private GameObject target;
     private float moveSpeed;
@@ -12,7 +10,7 @@ public class ZombieEnemy : MonoBehaviour
     //   HealthSystem healthSystem;
     //  public Transform HealthBar;
     private Animator anim;
-    // [SerializeField] private float attackSpeed =10f;
+    // [SerializeField] private float attackSpeed =10f; 
     // [SerializeField] private float attackDamage =10f;
     private float canAttack;
     //[SerializeField] private GameObject explosion;
@@ -33,10 +31,12 @@ public class ZombieEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target != null)
+        {
             Vector2 direction = target.transform.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             rb.rotation = angle;
-       
+        }
     }
     void FixedUpdate()
     {
@@ -48,44 +48,25 @@ public class ZombieEnemy : MonoBehaviour
         switch (col.collider.tag)
         {
             case "Soldier":
-
-                Debug.Log("SUPPOSED SOLDER DEADD");
-            //    healthSystem.Damage(50);
-                EnemySpawner.spawnAllowed = false;
-                
-                Destroy(col.gameObject);
+            //   healthSystem.Damage(50);
+            Debug.Log("YOU LOSE");
+                    EnemySpawner.spawnAllowed = false;
                 anim.SetTrigger("Attack");
+                Destroy(col.gameObject);
                 target = null;
                 break;
             case "Bullet":
-                //add score how many dier?
-            //    healthSystem.Damage(20);
-                 //Destroy(col.gameObject);
+                //add score how many zombies killed?
+                //healthSystem.Damage(20);
+                //Destroy(col.gameObject);
                  Destroy(gameObject);
                 //Do damage function
                 //EnemySpawner.spawnAllowed = false;
-                //Destroy when DEAD INSIDE HEALTH ??
                 //Destroy(col.gameObject);
-               // target = null;
+                // target = null;
                 break;
         }
     }
-    // private void OnCollisionStay2D(Collision2D col)
-    // {
-    //     switch (col.collider.tag)
-    //     {
-    //         case "Soldier":
-    //             //Do damage function
-    //             EnemySpawner.spawnAllowed = false;
-    //             //Destroy when DEAD INSIDE HEALTH ??
-    //             Debug.Log("I ATTACKED YOU HAHAHA");
-    //             target = null;
-    //             break;
-    //        
-    //     }
-    // }
-    //
-
     private void MoveMonster()
     {
         if (target != null)
@@ -98,5 +79,5 @@ public class ZombieEnemy : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
     }
-
+    
 }
