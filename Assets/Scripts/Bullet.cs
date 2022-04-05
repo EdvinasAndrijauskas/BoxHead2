@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
-public class PistolBullets : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    private ZombieHealth ZombieHealth;
- 
+    private void Update()
+    {
+        transform.Translate(Vector3.up * Time.deltaTime );
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.collider.tag.Equals("Enemy"))
@@ -19,8 +22,12 @@ public class PistolBullets : MonoBehaviour
                 Destroy(col.gameObject);
             }
         }
-        Destroy(gameObject);
+        if (!col.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
     }
+    
     void OnBecameInvisible() {
         Destroy(gameObject);
     }
