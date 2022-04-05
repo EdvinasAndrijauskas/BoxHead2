@@ -19,6 +19,7 @@ TagManager:
   - GunFlash
   - Soldier
   - Bullet
+  - HealthBar
   layers:
   - Default
   - TransparentFX
