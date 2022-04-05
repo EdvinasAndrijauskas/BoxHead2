@@ -5,9 +5,9 @@ public class GunShooting : MonoBehaviour
     [SerializeField] private Transform firePoint; 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletForce = 20f;
-    
+    [SerializeField] private float fireRate = 5f;
+
     //TODO : Additional feature for other guns
-    public float fireRate = 15f;
     private float _timeToFire = 0f;
     
     private void Update()
@@ -16,7 +16,6 @@ public class GunShooting : MonoBehaviour
         {
             _timeToFire = Time.time + 1f / fireRate;
             ShootGunShooting();
-            
         }
     }
     
@@ -34,12 +33,11 @@ public class GunShooting : MonoBehaviour
         
         float angleStep = spreadAngle / numberOfProjectiles;
         float aimingAngle = firePoint.rotation.eulerAngles.z;
-        float centeringOffset = (spreadAngle / 2) - (angleStep / 2);                                                                                                                         //centered on the mouse cursor
   
         for (int i = 0; i < 3; i++)
         {
             float currentBulletAngle = angleStep * i;
-            Quaternion rotation = Quaternion.Euler(new Vector3(0,0,aimingAngle + currentBulletAngle - centeringOffset));
+            Quaternion rotation = Quaternion.Euler(new Vector3(0,0,aimingAngle + currentBulletAngle));
 
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
