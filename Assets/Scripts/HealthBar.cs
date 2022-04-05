@@ -1,27 +1,32 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private HealthSystem _healthSystem; 
-    // Start is called before the first frame update
-    public void SetUp(HealthSystem healthSystem)
+    [SerializeField] private Slider Slider;
+
+    public void SetMaxHealth(int health)
     {
-        this._healthSystem = healthSystem;
-        
-        _healthSystem.OnHealthChanged += HealthSystemOnOnHealthChanged;
+        Slider.maxValue = health;
+        Slider.value = health;
     }
 
-    private void HealthSystemOnOnHealthChanged(object sender, EventArgs e)
+    public void SetHealth(int health)
     {
-        transform.Find("HealthBar").localScale = new Vector3(_healthSystem.GetHealthPercent(), 1);
+        Slider.value = health;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.Find("HealthBar").localScale = new Vector3(_healthSystem.GetHealthPercent(), 1);
+        
     }
 }
