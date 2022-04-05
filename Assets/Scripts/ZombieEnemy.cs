@@ -6,25 +6,16 @@ public class ZombieEnemy : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject target;
     private float moveSpeed;
-    Vector2 directionToTarget;
-    //   HealthSystem healthSystem;
-    //  public Transform HealthBar;
+    private Vector2 directionToTarget;
     private Animator anim;
-    // [SerializeField] private float attackSpeed =10f; 
-    // [SerializeField] private float attackDamage =10f;
-    private float canAttack;
-    //[SerializeField] private GameObject explosion;
+    private PlayerHealth PlayerHealth;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Soldier");
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = Random.Range(1f, 3f);
-      //  healthSystem = new HealthSystem(100);
-      //  Transform healthBarTransform = Instantiate(HealthBar, new Vector2(0, 10), Quaternion.identity);
-      //  HealthBar healthBar = healthBarTransform.GetComponent<HealthBar>();
-      //  healthBar.SetUp(healthSystem);
-      //  Debug.Log("Health: " + healthSystem.GetHealthPercent());
         anim.SetFloat("Speed", moveSpeed);
     }
 
@@ -38,6 +29,7 @@ public class ZombieEnemy : MonoBehaviour
             rb.rotation = angle;
         }
     }
+
     void FixedUpdate()
     {
         MoveMonster();
@@ -45,28 +37,21 @@ public class ZombieEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        switch (col.collider.tag)
+        if (col.collider.tag.Equals("Soldier"))
         {
-            case "Soldier":
-            //   healthSystem.Damage(50);
-            Debug.Log("YOU LOSE");
-                    EnemySpawner.spawnAllowed = false;
-                anim.SetTrigger("Attack");
-                Destroy(col.gameObject);
+            EnemySpawner.spawnAllowed = false;
+            anim.SetTrigger("Attack");
+            col.gameObject.GetComponent<PlayerHealth>().Damage(20);
+            Debug.Log(col.gameObject.GetComponent<PlayerHealth>().CurrentHealth +
+                      "->>>>>>>>>>>>>>>>>>>>> PLAYER DAMAGED TAKEN");
+            if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
+            {
+                Destroy(col.gameObject, 1f);
                 target = null;
-                break;
-            case "Bullet":
-                //add score how many zombies killed?
-                //healthSystem.Damage(20);
-                //Destroy(col.gameObject);
-                 Destroy(gameObject);
-                //Do damage function
-                //EnemySpawner.spawnAllowed = false;
-                //Destroy(col.gameObject);
-                // target = null;
-                break;
+            }
         }
     }
+
     private void MoveMonster()
     {
         if (target != null)
@@ -79,5 +64,4 @@ public class ZombieEnemy : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
     }
-    
 }

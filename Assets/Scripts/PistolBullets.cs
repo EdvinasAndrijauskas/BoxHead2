@@ -6,11 +6,22 @@ using UnityEngine;
 
 public class PistolBullets : MonoBehaviour
 {
- private void OnCollisionEnter2D(Collision2D other)
- {
-  if (!other.gameObject.CompareTag("Bullet"))
-  {
-   Destroy(gameObject);
-  }
- }
+    private ZombieHealth ZombieHealth;
+ 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.tag.Equals("Enemy"))
+        {
+            col.gameObject.GetComponent<ZombieHealth>().Damage(25);
+            Debug.Log(col.gameObject.GetComponent<ZombieHealth>().CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> ZOMBIE DAMAGED TAKEN");
+            if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+            {
+                Destroy(col.gameObject);
+            }
+        }
+        Destroy(gameObject);
+    }
+    void OnBecameInvisible() {
+        Destroy(gameObject);
+    }
 }
