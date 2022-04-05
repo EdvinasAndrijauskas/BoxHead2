@@ -41,10 +41,10 @@ InputManager:
     m_Name: ShootMain
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: space
-    positiveButton: d
-    altNegativeButton: s
-    altPositiveButton: mouse 0
+    negativeButton: 
+    positiveButton: space
+    altNegativeButton: 
+    altPositiveButton: 
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -74,7 +74,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 
+    positiveButton: ','
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -90,9 +90,9 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: right
+    positiveButton: space
     altNegativeButton: 
-    altPositiveButton: space
+    altPositiveButton: 
     gravity: 0
     dead: 0.001
     sensitivity: 0.1

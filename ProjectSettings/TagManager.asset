@@ -17,7 +17,8 @@ TagManager:
   - SmokeTrail
   - Spawner
   - GunFlash
-  - Sphere
+  - Soldier
+  - Bullet
   layers:
   - Default
   - TransparentFX
