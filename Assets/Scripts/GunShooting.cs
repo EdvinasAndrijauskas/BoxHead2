@@ -1,24 +1,88 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GunShooting : MonoBehaviour
 {    
-    [SerializeField] private Transform firePoint; 
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float bulletForce = 50f;
-    [SerializeField] private float fireRate = 5f;
-    [SerializeField] private Animator muzzleFlash;
+    public Transform firePoint; 
+    public GameObject bulletPrefab;
+    public float bulletForce = 50f;
+    public float fireRate = 5f;
+    public Animator muzzleFlash;
 
-    //TODO : Additional feature for other guns
-    private float _timeToFire = 0f;
+    enum Guns
+    {
+        Pistol,
+        Shotgun,
+    }
     
+    float _timeToFire = 0f;
+    Guns _currentGun = Guns.Pistol;
+    List<Guns> _guns= new List<Guns>();
+    int _currentGunIndex;
+
+    private void Start()
+    {
+        //TODO: Could be Array 
+        //Enum.GetNames(typeof(_guns))
+        _guns.Add(Guns.Pistol);
+        _currentGunIndex = 0;
+    }
+
+
     private void Update()
     {
         if (Input.GetButtonDown("Shoot")&& Time.time >= _timeToFire )
         {
             _timeToFire = Time.time + 1f / fireRate;
-            PistolShooting();
+            GetWeapon(_currentGun);
             muzzleFlash.SetTrigger("Shoot");
 
+        }
+        
+        //next gun
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if (_currentGunIndex < _guns.Count - 1)
+            {
+                _currentGunIndex += 1;
+                _currentGun = _guns[_currentGunIndex];
+            }
+        }
+        
+        //previous gun
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if (_currentGunIndex > 0)
+            {
+                _currentGunIndex -= 1;
+                _currentGun = _guns[_currentGunIndex];
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            AddGun();
+        }
+        
+    }
+
+    void AddGun()
+    {
+        _guns.Add(Guns.Shotgun);
+    }
+
+    private void GetWeapon(Guns gun)
+    {
+        switch(gun) 
+        {
+            case Guns.Pistol:
+                PistolShooting();
+                break;
+            case Guns.Shotgun:
+                ShotGunShooting();
+                break;
         }
     }
     
@@ -29,7 +93,7 @@ public class GunShooting : MonoBehaviour
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
     
-    private void ShootGunShooting()
+    private void ShotGunShooting()
     {
         
         float numberOfProjectiles = 3;
