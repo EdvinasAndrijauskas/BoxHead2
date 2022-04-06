@@ -6,6 +6,7 @@ public class GunShooting : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletForce = 50f;
     [SerializeField] private float fireRate = 5f;
+    [SerializeField] private Animator muzzleFlash;
 
     //TODO : Additional feature for other guns
     private float _timeToFire = 0f;
@@ -15,7 +16,9 @@ public class GunShooting : MonoBehaviour
         if (Input.GetButtonDown("Shoot")&& Time.time >= _timeToFire )
         {
             _timeToFire = Time.time + 1f / fireRate;
-            ShootGunShooting();
+            PistolShooting();
+            muzzleFlash.SetTrigger("Shoot");
+
         }
     }
     
@@ -23,11 +26,12 @@ public class GunShooting : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
     
     private void ShootGunShooting()
     {
+        
         float numberOfProjectiles = 3;
         float spreadAngle = 25f;
         float angleStep = spreadAngle / numberOfProjectiles;

@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 {
     private void Update()
     {
-        transform.Translate(Vector3.up * Time.deltaTime );
+        transform.Translate(Vector3.up * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D col)
