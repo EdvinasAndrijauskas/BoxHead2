@@ -27,11 +27,18 @@ public class EnemiesBullets : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.CompareTag("Soldier"))
+        if (col.collider.tag.Equals("Soldier"))
         {
-            Destroy(gameObject);
+            col.gameObject.GetComponent<PlayerHealth>().Damage(30);
+            if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
+            {
+                EnemySpawner.spawnAllowed = false;
+                col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByWizard");
+                col.gameObject.GetComponent<PlayerMovement>().enabled = false;
+                Destroy(col.gameObject, 1.5f);
+            }
         }
     }
 }

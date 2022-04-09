@@ -39,15 +39,18 @@ public class ZombieEnemy : MonoBehaviour
     {
         if (col.collider.tag.Equals("Soldier"))
         {
-            EnemySpawner.spawnAllowed = false;
             anim.SetTrigger("Attack");
+            //Maybe variable in here?
             col.gameObject.GetComponent<PlayerHealth>().Damage(20);
             Debug.Log(col.gameObject.GetComponent<PlayerHealth>().CurrentHealth +
                       "->>>>>>>>>>>>>>>>>>>>> PLAYER DAMAGED TAKEN");
             if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
             {
-                Destroy(col.gameObject, 1f);
                 target = null;
+                EnemySpawner.spawnAllowed = false;
+                col.gameObject.GetComponent<PlayerMovement>().enabled = false;
+                col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByZombie");
+                Destroy(col.gameObject, 1.5f);
             }
         }
     }

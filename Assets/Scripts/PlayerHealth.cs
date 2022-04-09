@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     public int Health { get; set; }
     public int CurrentHealth { get; set; }
     [SerializeField] private HealthBar HealthBar;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,6 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Damage(int damage)
@@ -34,7 +33,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     public void Heal()
     {
         int newHealth = CurrentHealth;
-        if (newHealth == CurrentHealth )
+        if (newHealth == CurrentHealth)
         {
             CurrentHealth += 10;
             if (CurrentHealth > 100) CurrentHealth = 100;

@@ -6,17 +6,18 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemies;
     private int randomSpawnPoint, randomEnemy;
     public static bool spawnAllowed;
+
     private void Start()
     {
         spawnAllowed = true;
-        InvokeRepeating("SpawnAnEnemy",0f,1f);
+        InvokeRepeating("SpawnAnEnemy", 0f, 1f);
     }
-   private void SpawnAnEnemy()
+
+    private void SpawnAnEnemy()
     {
         if (spawnAllowed)
         {
