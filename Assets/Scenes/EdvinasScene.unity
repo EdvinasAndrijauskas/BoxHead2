@@ -1447,6 +1447,18 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 874714449}
+    - target: {fileID: 7413977973717599851, guid: 89e53df89d126bb418fbac7cfc7a4eed,
+        type: 3}
+      propertyPath: leftFlame
+      value: 
+      objectReference: {fileID: 8006826170137179635, guid: 6a5dc050066fdcc489e575999e500c5e,
+        type: 3}
+    - target: {fileID: 7413977973717599851, guid: 89e53df89d126bb418fbac7cfc7a4eed,
+        type: 3}
+      propertyPath: rightFlame
+      value: 
+      objectReference: {fileID: 5257936747056105314, guid: 686c7b12f6e5de545b78c27d01dda947,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89e53df89d126bb418fbac7cfc7a4eed, type: 3}
