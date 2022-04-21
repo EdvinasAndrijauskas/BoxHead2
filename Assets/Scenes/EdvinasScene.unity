@@ -1199,7 +1199,8 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8662701788299468425, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+        type: 3}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
       propertyPath: spawnPoints.Array.size
