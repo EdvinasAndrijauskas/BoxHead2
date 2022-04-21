@@ -7,12 +7,12 @@ public class ShootingEnemy : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float stoppingDistance;
     [SerializeField] private float retreaDistance;
-    private float timeBtwShots;
     [SerializeField] private float startTimeBtwShots;
-
     [SerializeField] private Transform player;
     [SerializeField] private GameObject rightFlame;
     [SerializeField] private GameObject leftFlame;
+
+    private float timeBtwShots;
     private bool _facingRight;
 
     // Start is called before the first frame update
@@ -25,6 +25,11 @@ public class ShootingEnemy : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        Following();
+    }
+
+    private void Following()
     {
         if (player != null)
         {
@@ -48,26 +53,31 @@ public class ShootingEnemy : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
             }
 
-            if (timeBtwShots <= 0)
+            Shooting();
+        }
+    }
+
+    private void Shooting()
+    {
+        if (timeBtwShots <= 0)
+        {
+            if (!GameObject.FindGameObjectWithTag("Soldier").GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
             {
-                if (!GameObject.FindGameObjectWithTag("Soldier").GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
+                if (_facingRight)
                 {
-                    if (_facingRight)
-                    {
-                        Instantiate(leftFlame, transform.position, Quaternion.identity);
-                        timeBtwShots = startTimeBtwShots;
-                    }
-                    else
-                    {
-                        Instantiate(rightFlame, transform.position, Quaternion.identity);
-                        timeBtwShots = startTimeBtwShots;
-                    }
+                    Instantiate(leftFlame, transform.position, Quaternion.identity);
+                    timeBtwShots = startTimeBtwShots;
+                }
+                else
+                {
+                    Instantiate(rightFlame, transform.position, Quaternion.identity);
+                    timeBtwShots = startTimeBtwShots;
                 }
             }
-            else
-            {
-                timeBtwShots -= Time.deltaTime;
-            }
+        }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
         }
     }
 
