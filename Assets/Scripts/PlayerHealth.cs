@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             CurrentHealth += 10;
             if (CurrentHealth > 100) CurrentHealth = 100;
-            Debug.Log(CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> PLAYER HEALED");
+            //Debug.Log(CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> PLAYER HEALED");
             HealthBar.SetHealth(CurrentHealth);
         }
     }

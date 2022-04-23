@@ -42,8 +42,8 @@ public class ZombieEnemy : MonoBehaviour
             anim.SetTrigger("Attack");
             //Maybe variable in here?
             col.gameObject.GetComponent<PlayerHealth>().Damage(20);
-            Debug.Log(col.gameObject.GetComponent<PlayerHealth>().CurrentHealth +
-                      "->>>>>>>>>>>>>>>>>>>>> PLAYER DAMAGED TAKEN");
+            /*Debug.Log(col.gameObject.GetComponent<PlayerHealth>().CurrentHealth +
+                      "->>>>>>>>>>>>>>>>>>>>> PLAYER DAMAGED TAKEN");*/
             if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
             {
                 target = null;

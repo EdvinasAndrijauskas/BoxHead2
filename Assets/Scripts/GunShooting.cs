@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using data;
+using model;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunShooting : MonoBehaviour
 {    
@@ -10,24 +13,18 @@ public class GunShooting : MonoBehaviour
     public float bulletForce = 50f;
     public float fireRate = 5f;
     public Animator muzzleFlash;
-
-    enum Guns
-    {
-        Pistol,
-        Shotgun,
-    }
+    public Text ammoInfo;
     
     float _timeToFire = 0f;
-    Guns _currentGun = Guns.Pistol;
-    List<Guns> _guns= new List<Guns>();
-    int _currentGunIndex;
+    Weapon _currentWeapon;
+    private List<Weapon> weapons = WeaponLibrary.Weapons;
+    int _currentWeaponIndex = 0;
 
     private void Start()
     {
         //TODO: Could be Array 
         //Enum.GetNames(typeof(_guns))
-        _guns.Add(Guns.Pistol);
-        _currentGunIndex = 0;
+        _currentWeapon = FindWeaponById(WeaponId.Pistol.ToString());
     }
 
 
@@ -35,55 +32,75 @@ public class GunShooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Shoot")&& Time.time >= _timeToFire )
         {
-            _timeToFire = Time.time + 1f / fireRate;
-            GetWeapon(_currentGun);
-            muzzleFlash.SetTrigger("Shoot");
-
+            if (_currentWeapon.remainingAmmo != 0)
+            {
+                _timeToFire = Time.time + 1f / fireRate;
+                WeaponShooting(_currentWeapon.weaponId);
+                muzzleFlash.SetTrigger("Shoot");
+            }
         }
         
         //next gun
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if (_currentGunIndex < _guns.Count - 1)
+            if (_currentWeaponIndex < weapons.Count - 1)
             {
-                _currentGunIndex += 1;
-                _currentGun = _guns[_currentGunIndex];
+                _currentWeaponIndex += 1;
+                _currentWeapon = weapons[_currentWeaponIndex];
             }
         }
         
         //previous gun
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            if (_currentGunIndex > 0)
+            if (_currentWeaponIndex > 0)
             {
-                _currentGunIndex -= 1;
-                _currentGun = _guns[_currentGunIndex];
+                _currentWeaponIndex -= 1;
+                _currentWeapon = weapons[_currentWeaponIndex];
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        //reload
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            AddGun();
+           //StartCoroutine(_currentWeapon.Reload());
         }
-        
+
+        ammoInfo.text = "Bullet: " + _currentWeapon.currentAmmo + " / " +  _currentWeapon.weaponId == WeaponId.Pistol.ToString()  ?   "∞"  :  _currentWeapon.currentAmmo.ToString();
+
+    }
+    
+
+    Weapon FindWeaponById(String weaponId)
+    {
+        return weapons.Find(weapon => weapon.weaponId == weaponId);
     }
 
-    void AddGun()
+    private void WeaponShooting(String weaponId)
     {
-        _guns.Add(Guns.Shotgun);
-    }
-
-    private void GetWeapon(Guns gun)
-    {
-        switch(gun) 
-        {
-            case Guns.Pistol:
+      
+            if (weaponId == WeaponId.Pistol.ToString())
+            {
                 PistolShooting();
-                break;
-            case Guns.Shotgun:
+            }
+            else if (weaponId == WeaponId.Shotgun.ToString())
+            {
                 ShotGunShooting();
-                break;
-        }
+            }
+
+            /*switch(weaponId) 
+            {
+                case WeaponId.Pistol:
+                    PistolShooting();
+                    break;
+                case WeaponId.Shotgun:
+                    ShotGunShooting();
+                    break;
+            }*/
+            _currentWeapon.Shoot();
+        
+
+
     }
     
     private void PistolShooting()

@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
         if (col.collider.tag.Equals("Enemy"))
         {
             col.gameObject.GetComponent<ZombieHealth>().Damage(25);
-            Debug.Log(col.gameObject.GetComponent<ZombieHealth>().CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> ZOMBIE DAMAGED TAKEN");
+            //Debug.Log(col.gameObject.GetComponent<ZombieHealth>().CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> ZOMBIE DAMAGED TAKEN");
             if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
             {
                 Destroy(col.gameObject);
