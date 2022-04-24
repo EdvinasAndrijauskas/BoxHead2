@@ -14,7 +14,7 @@ namespace data
         public static List<Weapon> Weapons = new List<Weapon>
         {
             new Weapon(WeaponId.Pistol.ToString(),7, 0.5f),
-            new Weapon(WeaponId.Shotgun.ToString(),2,1f, maxAmmo:4 )
+            new Weapon(WeaponId.Shotgun.ToString(),12,1f, maxBackupAmmo:24)
         };
     }
 }

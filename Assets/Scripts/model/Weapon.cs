@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace model
@@ -7,53 +6,73 @@ namespace model
     public class Weapon
     {
         public string weaponId { get; set; }
-        private int maxAmmo { get; set; } //immutable
+        private int maxBackupAmmo { get; set; } //immutable
         private int magazineCapacity { get; set; } //immutable
-        private float reloadTime { get; set; } //immutable
-        public int currentAmmo { get; set; }
-        public int remainingAmmo { get; set; }
+        public int currentMagazineAmmo { get; set; }
+        public int remainingBackupAmmo { get; set; }
+        public float reloadTime { get; set; }
         
-        public Weapon(string weaponId, int magazineCapacity, float reloadTime, int maxAmmo = -1)
+        
+        public Weapon(string weaponId, int magazineCapacity, float reloadTime, int maxBackupAmmo = -1)
         {
             this.weaponId = weaponId;
-            this.maxAmmo = maxAmmo;
+            this.maxBackupAmmo = maxBackupAmmo;
             this.magazineCapacity = magazineCapacity;
             this.reloadTime = reloadTime;
             
-            currentAmmo = magazineCapacity;
-            remainingAmmo = maxAmmo;
+            currentMagazineAmmo = magazineCapacity;
+            remainingBackupAmmo = maxBackupAmmo;
         }
 
         public void Shoot()
         {
-            currentAmmo--;
-            if (currentAmmo % maxAmmo == 0 && currentAmmo == 0)
-            { 
+            currentMagazineAmmo--;
+            if (currentMagazineAmmo % maxBackupAmmo == 0)
+            {
                 Reload();
             }
         }
 
-        public void Reload()
+        public IEnumerator Reload()
         {
-            if (remainingAmmo <= 0 && maxAmmo != -1)
+            int totalRemainingAmmo = TotalRemainingAmmo();
+            if (totalRemainingAmmo <= 0 && maxBackupAmmo != -1)
             {
                 Debug.Log("No Bullets");
+                //TODO: add sound
             }
             else
             {
-                if (maxAmmo == -1)
+
+                if (currentMagazineAmmo < magazineCapacity)
                 {
-                    currentAmmo = magazineCapacity;
+                    yield return new WaitForSeconds(reloadTime); 
+                }
+          
+                if (maxBackupAmmo == -1)
+                {
+                    currentMagazineAmmo = magazineCapacity;
                 }
                 else
                 {
-                    int ammoBalance = magazineCapacity - currentAmmo;
-                    currentAmmo += ammoBalance;
-                    remainingAmmo -= ammoBalance;
+                    int ammoBalanceInMagazine = magazineCapacity - currentMagazineAmmo;
+                    
+                    if (ammoBalanceInMagazine >= remainingBackupAmmo)
+                    {
+                        currentMagazineAmmo += remainingBackupAmmo;
+                        remainingBackupAmmo = 0;
+                    }
+                    else
+                    {
+                        remainingBackupAmmo -= ammoBalanceInMagazine; 
+                        currentMagazineAmmo += ammoBalanceInMagazine;
+                    }
                 }
-                Debug.Log("Reloading...");
-                //yield return new WaitForSeconds(reloadTime);
             }
+        }
+        public int TotalRemainingAmmo()
+        {
+            return remainingBackupAmmo + currentMagazineAmmo;
         }
     }
 }

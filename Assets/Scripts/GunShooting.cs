@@ -4,6 +4,7 @@ using System.Linq;
 using data;
 using model;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GunShooting : MonoBehaviour
@@ -19,12 +20,14 @@ public class GunShooting : MonoBehaviour
     Weapon _currentWeapon;
     private List<Weapon> weapons = WeaponLibrary.Weapons;
     int _currentWeaponIndex = 0;
-
+    public UnityEvent<float> reloading;
+    private float currentDelay = 1f;
     private void Start()
     {
         //TODO: Could be Array 
         //Enum.GetNames(typeof(_guns))
         _currentWeapon = FindWeaponById(WeaponId.Pistol.ToString());
+        reloading?.Invoke(currentDelay);
     }
 
 
@@ -32,13 +35,20 @@ public class GunShooting : MonoBehaviour
     {
         if (Input.GetButtonDown("Shoot")&& Time.time >= _timeToFire )
         {
-            if (_currentWeapon.remainingAmmo != 0)
+            int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
+
+            if (totalRemainingAmmo != 0 )
             {
+                currentDelay = _currentWeapon.reloadTime;
                 _timeToFire = Time.time + 1f / fireRate;
                 WeaponShooting(_currentWeapon.weaponId);
                 muzzleFlash.SetTrigger("Shoot");
             }
+            
         }
+        
+        string weap =  _currentWeapon.weaponId == WeaponId.Pistol.ToString()  ?   "∞"  :  _currentWeapon.remainingBackupAmmo.ToString() ;
+        ammoInfo.text =  _currentWeapon.currentMagazineAmmo + " / " + weap;
         
         //next gun
         if(Input.GetKeyDown(KeyCode.E))
@@ -47,6 +57,8 @@ public class GunShooting : MonoBehaviour
             {
                 _currentWeaponIndex += 1;
                 _currentWeapon = weapons[_currentWeaponIndex];
+                GameObject.Find("Canvas/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
+
             }
         }
         
@@ -57,17 +69,17 @@ public class GunShooting : MonoBehaviour
             {
                 _currentWeaponIndex -= 1;
                 _currentWeapon = weapons[_currentWeaponIndex];
+                GameObject.Find("Canvas/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
             }
         }
 
         //reload
         if (Input.GetKeyDown(KeyCode.R))
-        {
-           //StartCoroutine(_currentWeapon.Reload());
+        { 
+            StartCoroutine(_currentWeapon.Reload());
+            
         }
-
-        ammoInfo.text = "Bullet: " + _currentWeapon.currentAmmo + " / " +  _currentWeapon.weaponId == WeaponId.Pistol.ToString()  ?   "∞"  :  _currentWeapon.currentAmmo.ToString();
-
+        
     }
     
 
