@@ -22,6 +22,7 @@ public class GunShooting : MonoBehaviour
     int _currentWeaponIndex = 0;
     public UnityEvent<float> reloading;
     private float currentDelay = 1f;
+    private bool canShoot = true;
     private void Start()
     {
         //TODO: Could be Array 
@@ -37,14 +38,22 @@ public class GunShooting : MonoBehaviour
         {
             int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
 
-            if (totalRemainingAmmo != 0 )
+            if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
             {
-                currentDelay = _currentWeapon.reloadTime;
-                _timeToFire = Time.time + 1f / fireRate;
-                WeaponShooting(_currentWeapon.weaponId);
-                muzzleFlash.SetTrigger("Shoot");
+                
+                if (_currentWeapon.currentMagazineAmmo == 0)
+                {
+                    StartCoroutine(_currentWeapon.Reload());
+                }
+                else
+                {
+                    if(canShoot) currentDelay = _currentWeapon.reloadTime;
+                    _timeToFire = Time.time + 1f / fireRate;
+                    WeaponShooting(_currentWeapon.weaponId);
+                    muzzleFlash.SetTrigger("Shoot");
+                }
             }
-            
+
         }
         
         string weap =  _currentWeapon.weaponId == WeaponId.Pistol.ToString()  ?   "∞"  :  _currentWeapon.remainingBackupAmmo.ToString() ;
@@ -77,9 +86,21 @@ public class GunShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         { 
             StartCoroutine(_currentWeapon.Reload());
-            
         }
-        
+
+        if (_currentWeapon.isRealoding)
+        {
+            canShoot = false;
+            currentDelay -= Time.deltaTime;
+            reloading?.Invoke(currentDelay / _currentWeapon.reloadTime );
+            
+            if (currentDelay <= 0)
+            {
+                canShoot = true;
+                _currentWeapon.isRealoding = false;
+                reloading?.Invoke(1 );
+            }
+        }
     }
     
 

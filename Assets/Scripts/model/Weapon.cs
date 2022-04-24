@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using data;
 using UnityEngine;
 
 namespace model
@@ -6,11 +7,12 @@ namespace model
     public class Weapon
     {
         public string weaponId { get; set; }
-        private int maxBackupAmmo { get; set; } //immutable
-        private int magazineCapacity { get; set; } //immutable
+        private int maxBackupAmmo;  //immutable
+        private int magazineCapacity; //immutable
         public int currentMagazineAmmo { get; set; }
         public int remainingBackupAmmo { get; set; }
         public float reloadTime { get; set; }
+        public bool isRealoding { get; set; }
         
         
         public Weapon(string weaponId, int magazineCapacity, float reloadTime, int maxBackupAmmo = -1)
@@ -22,15 +24,12 @@ namespace model
             
             currentMagazineAmmo = magazineCapacity;
             remainingBackupAmmo = maxBackupAmmo;
+            isRealoding = false;
         }
 
         public void Shoot()
         {
             currentMagazineAmmo--;
-            if (currentMagazineAmmo % maxBackupAmmo == 0)
-            {
-                Reload();
-            }
         }
 
         public IEnumerator Reload()
@@ -38,15 +37,16 @@ namespace model
             int totalRemainingAmmo = TotalRemainingAmmo();
             if (totalRemainingAmmo <= 0 && maxBackupAmmo != -1)
             {
+                isRealoding = false;
                 Debug.Log("No Bullets");
                 //TODO: add sound
             }
             else
             {
-
                 if (currentMagazineAmmo < magazineCapacity)
                 {
-                    yield return new WaitForSeconds(reloadTime); 
+                    isRealoding = true;
+                    yield return new WaitForSeconds(reloadTime);
                 }
           
                 if (maxBackupAmmo == -1)
@@ -72,6 +72,7 @@ namespace model
         }
         public int TotalRemainingAmmo()
         {
+            if (weaponId == WeaponId.Pistol.ToString()) return -1;
             return remainingBackupAmmo + currentMagazineAmmo;
         }
     }
