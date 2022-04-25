@@ -10,6 +10,7 @@ public class WeaponInformation : MonoBehaviour
     public Sprite pistol;
     public Sprite shotgun;
     public Sprite rifle;
+    public Sprite javelin;
 
     public void UpdateWeaponImage(string weaponId)
     {
@@ -28,6 +29,10 @@ public class WeaponInformation : MonoBehaviour
             GetComponent<Image>().sprite = shotgun;
         }
         
+        if (weaponId == WeaponId.Javelin.ToString())
+        {
+            GetComponent<Image>().sprite = javelin;
+        }
       
     }
     

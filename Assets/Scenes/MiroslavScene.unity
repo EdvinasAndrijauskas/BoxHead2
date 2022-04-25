@@ -270,10 +270,10 @@ RectTransform:
   m_Father: {fileID: 392547955}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -743.5, y: 340}
-  m_SizeDelta: {x: 305, y: 139.8306}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 193, y: -268}
+  m_SizeDelta: {x: 305, y: 139.83057}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &567661092
 MonoBehaviour:
@@ -290,6 +290,8 @@ MonoBehaviour:
   pistol: {fileID: -8546539352225154102, guid: 0b6723d22da3b4a4ba5d66588a569600, type: 3}
   shotgun: {fileID: 148034098458126274, guid: 0b6723d22da3b4a4ba5d66588a569600, type: 3}
   rifle: {fileID: 1229713230794356806, guid: 0b6723d22da3b4a4ba5d66588a569600, type: 3}
+  javelin: {fileID: -5015233794725677893, guid: 0b6723d22da3b4a4ba5d66588a569600,
+    type: 3}
 --- !u!114 &567661093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,10 +465,10 @@ RectTransform:
   m_Father: {fileID: 1759539334}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 163, y: 114}
-  m_SizeDelta: {x: -52, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 182.5, y: -86}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906430693
 MonoBehaviour:
@@ -495,7 +497,7 @@ MonoBehaviour:
   m_FillMethod: 1
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &906430694
@@ -539,10 +541,10 @@ RectTransform:
   m_Father: {fileID: 392547955}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -692.1286, y: 402.37292}
-  m_SizeDelta: {x: 407.7428, y: 175.2326}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 157, y: -126}
+  m_SizeDelta: {x: 235.03479, y: 91.75702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &957183852
 MonoBehaviour:
@@ -571,13 +573,15 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '12/24
+
+'
 --- !u!222 &957183853
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -754,6 +758,9 @@ MonoBehaviour:
   firePoint: {fileID: 370486996}
   bulletPrefab: {fileID: 5991586403301259665, guid: bdc19c475cdef9f46bea0191b4d6edde,
     type: 3}
+  projectile:
+  - {fileID: 5991586403301259665, guid: bdc19c475cdef9f46bea0191b4d6edde, type: 3}
+  - {fileID: 8484058920959692465, guid: 15eedb7e4834ce84b8dce9ac5bc62861, type: 3}
   muzzleFlash: {fileID: 727898442}
   ammoInfo: {fileID: 957183852}
   reloading:
@@ -863,6 +870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1759539334}
+  - component: {fileID: 1759539336}
   - component: {fileID: 1759539335}
   m_Layer: 5
   m_Name: Reload
@@ -886,10 +894,10 @@ RectTransform:
   m_Father: {fileID: 392547955}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -767, y: 244.84}
-  m_SizeDelta: {x: -1615, y: -940.16943}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 117.47876, y: -37.070984}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1759539335
 MonoBehaviour:
@@ -932,16 +940,24 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
-  m_FillRect: {fileID: 0}
+  m_FillRect: {fileID: 906430692}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!222 &1759539336
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759539333}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1887023620
 PrefabInstance:
   m_ObjectHideFlags: 0

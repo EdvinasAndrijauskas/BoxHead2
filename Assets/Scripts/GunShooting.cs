@@ -11,6 +11,7 @@ public class GunShooting : MonoBehaviour
 {    
     public Transform firePoint; 
     public GameObject bulletPrefab;
+    public List<GameObject> projectile;
     public Animator muzzleFlash;
     public Text ammoInfo;
     
@@ -150,6 +151,10 @@ public class GunShooting : MonoBehaviour
             {
                 ShotgunShooting();
             }
+            else if (weaponId == WeaponId.Javelin.ToString())
+            {
+                JavelinShooting();
+            }
 
             /*switch(weaponId) 
             {
@@ -178,6 +183,18 @@ public class GunShooting : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+    }
+    
+    private void JavelinShooting()
+    {
+        GameObject bullet = Instantiate(FindProjectile("Missile"), firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+    }
+
+    GameObject FindProjectile(String name)
+    {
+        return projectile.Find(o => o.name == name);
     }
     
     private void ShotgunShooting()
