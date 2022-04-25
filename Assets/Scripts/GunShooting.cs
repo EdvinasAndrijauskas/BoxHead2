@@ -11,8 +11,6 @@ public class GunShooting : MonoBehaviour
 {    
     public Transform firePoint; 
     public GameObject bulletPrefab;
-    public float bulletForce = 50f;
-    public float fireRate = 5f;
     public Animator muzzleFlash;
     public Text ammoInfo;
     
@@ -34,28 +32,56 @@ public class GunShooting : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Shoot")&& Time.time >= _timeToFire )
+        if (_currentWeapon.weaponId != WeaponId.Pistol.ToString())
         {
-            int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
-
-            if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
+            if (Input.GetButton("Shoot") && Time.time >= _timeToFire)
             {
-                
-                if (_currentWeapon.currentMagazineAmmo == 0)
-                {
-                    StartCoroutine(_currentWeapon.Reload());
-                }
-                else
-                {
-                    if(canShoot) currentDelay = _currentWeapon.reloadTime;
-                    _timeToFire = Time.time + 1f / fireRate;
-                    WeaponShooting(_currentWeapon.weaponId);
-                    muzzleFlash.SetTrigger("Shoot");
-                }
-            }
+                int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
 
+                if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
+                {
+
+                    if (_currentWeapon.currentMagazineAmmo == 0)
+                    {
+                        StartCoroutine(_currentWeapon.Reload());
+                    }
+                    else
+                    {
+                        if (canShoot) currentDelay = _currentWeapon.reloadTime;
+                        _timeToFire = Time.time + 1f / _currentWeapon.fireRate;
+                        WeaponShooting(_currentWeapon.weaponId);
+                        muzzleFlash.SetTrigger("Shoot");
+                    }
+                }
+
+            }
         }
-        
+        else
+        {
+            if (Input.GetButtonDown("Shoot") && Time.time >= _timeToFire)
+            {
+                int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
+
+                if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
+                {
+
+                    if (_currentWeapon.currentMagazineAmmo == 0)
+                    {
+                        StartCoroutine(_currentWeapon.Reload());
+                    }
+                    else
+                    {
+                        if (canShoot) currentDelay = _currentWeapon.reloadTime;
+                        _timeToFire = Time.time + 1f / _currentWeapon.fireRate;
+                        WeaponShooting(_currentWeapon.weaponId);
+                        muzzleFlash.SetTrigger("Shoot");
+                    }
+                }
+
+            }
+        }
+
+
         string weap =  _currentWeapon.weaponId == WeaponId.Pistol.ToString()  ?   "∞"  :  _currentWeapon.remainingBackupAmmo.ToString() ;
         ammoInfo.text =  _currentWeapon.currentMagazineAmmo + " / " + weap;
         
@@ -116,9 +142,13 @@ public class GunShooting : MonoBehaviour
             {
                 PistolShooting();
             }
+            else if (weaponId == WeaponId.Rifle.ToString())
+            {
+                RifleShooting();
+            }
             else if (weaponId == WeaponId.Shotgun.ToString())
             {
-                ShotGunShooting();
+                ShotgunShooting();
             }
 
             /*switch(weaponId) 
@@ -140,10 +170,17 @@ public class GunShooting : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
     }
     
-    private void ShotGunShooting()
+    private void RifleShooting()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+    }
+    
+    private void ShotgunShooting()
     {
         
         float numberOfProjectiles = 3;
@@ -158,7 +195,7 @@ public class GunShooting : MonoBehaviour
 
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(bullet.transform.up * bulletForce, ForceMode2D.Impulse);
+            rb.AddForce(bullet.transform.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
 
         }
     }

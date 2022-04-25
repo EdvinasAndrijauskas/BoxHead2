@@ -9,17 +9,21 @@ namespace model
         public string weaponId { get; set; }
         private int maxBackupAmmo;  //immutable
         private int magazineCapacity; //immutable
+        public float bulletForce;
+        public float fireRate;
         public int currentMagazineAmmo { get; set; }
         public int remainingBackupAmmo { get; set; }
         public float reloadTime { get; set; }
         public bool isRealoding { get; set; }
         
         
-        public Weapon(string weaponId, int magazineCapacity, float reloadTime, int maxBackupAmmo = -1)
+        public Weapon(string weaponId, int magazineCapacity, float bulletForce, float fireRate,float reloadTime,  int maxBackupAmmo = -1)
         {
             this.weaponId = weaponId;
             this.maxBackupAmmo = maxBackupAmmo;
             this.magazineCapacity = magazineCapacity;
+            this.bulletForce = bulletForce;
+            this.fireRate = fireRate;
             this.reloadTime = reloadTime;
             
             currentMagazineAmmo = magazineCapacity;

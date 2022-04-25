@@ -9,6 +9,8 @@ public class WeaponInformation : MonoBehaviour
     
     public Sprite pistol;
     public Sprite shotgun;
+    public Sprite rifle;
+
     public void UpdateWeaponImage(string weaponId)
     {
         if (weaponId == WeaponId.Pistol.ToString())
@@ -16,10 +18,17 @@ public class WeaponInformation : MonoBehaviour
             GetComponent<Image>().sprite = pistol;
         }
         
+        if (weaponId == WeaponId.Rifle.ToString())
+        {
+            GetComponent<Image>().sprite = rifle;
+        }
+        
         if (weaponId == WeaponId.Shotgun.ToString())
         {
             GetComponent<Image>().sprite = shotgun;
         }
+        
+      
     }
     
 }
