@@ -155,7 +155,19 @@ public class GunShooting : MonoBehaviour
             {
                 JavelinShooting();
             }
-
+            else if (weaponId == WeaponId.Flamethrower.ToString())
+            {
+                FlamethrowerShooting();
+            }
+            
+            else if (weaponId == WeaponId.GrenadeLauncher.ToString())
+            {
+                GrenadeLauncherShooting();
+            }
+            else if (weaponId == WeaponId.Sniper.ToString())
+            {
+                SniperShooting();
+            }
             /*switch(weaponId) 
             {
                 case WeaponId.Pistol:
@@ -191,6 +203,37 @@ public class GunShooting : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
     }
+    
+    private void FlamethrowerShooting()
+    {
+        GameObject bullet = Instantiate(FindProjectile("Flame"), firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+    }
+    
+    private void GrenadeLauncherShooting()
+    {
+        /*GameObject bullet = Instantiate(FindProjectile("EMP_Grenade"), firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);*/
+        
+        float numberOfProjectiles = 3;
+        float spreadAngle = 40f;
+        float angleStep = spreadAngle / numberOfProjectiles;
+        float centeringOffset = (spreadAngle / 2) - (angleStep / 2);
+        
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            Vector3 currentBulletAngle = new Vector3(0, 0, angleStep * i - centeringOffset);
+            Quaternion rotation = Quaternion.Euler(firePoint.rotation.eulerAngles + currentBulletAngle);
+
+            GameObject bullet = Instantiate(FindProjectile("EMP_Grenade"), firePoint.position, rotation);
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+            rb.AddForce(bullet.transform.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+
+        }
+    }
+
 
     GameObject FindProjectile(String name)
     {
@@ -200,8 +243,8 @@ public class GunShooting : MonoBehaviour
     private void ShotgunShooting()
     {
         
-        float numberOfProjectiles = 3;
-        float spreadAngle = 25f;
+        float numberOfProjectiles = 2;
+        float spreadAngle = 10f;
         float angleStep = spreadAngle / numberOfProjectiles;
         float centeringOffset = (spreadAngle / 2) - (angleStep / 2);
         
@@ -218,10 +261,11 @@ public class GunShooting : MonoBehaviour
     }
     
     //TODO: In progress
-    void LaserShooting()
+    void SniperShooting()
     {
         //Use debug with gizmo
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * 10f, Color.red);
+        
         var position = firePoint.position;
         RaycastHit2D hit = Physics2D.Raycast(position, transform.right,100f);
             

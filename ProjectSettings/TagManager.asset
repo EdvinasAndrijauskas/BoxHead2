@@ -31,7 +31,7 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
+  - Explosion
   - 
   - 
   - 
@@ -57,4 +57,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Explosion
+    uniqueID: 2228896739
     locked: 0

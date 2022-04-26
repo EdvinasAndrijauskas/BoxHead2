@@ -292,6 +292,10 @@ MonoBehaviour:
   rifle: {fileID: 1229713230794356806, guid: 0b6723d22da3b4a4ba5d66588a569600, type: 3}
   javelin: {fileID: -5015233794725677893, guid: 0b6723d22da3b4a4ba5d66588a569600,
     type: 3}
+  flamethrower: {fileID: -7418862003443059897, guid: 0b6723d22da3b4a4ba5d66588a569600,
+    type: 3}
+  grenadeLauncher: {fileID: 2599786900291170258, guid: 0b6723d22da3b4a4ba5d66588a569600,
+    type: 3}
 --- !u!114 &567661093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,6 +765,8 @@ MonoBehaviour:
   projectile:
   - {fileID: 5991586403301259665, guid: bdc19c475cdef9f46bea0191b4d6edde, type: 3}
   - {fileID: 8484058920959692465, guid: 15eedb7e4834ce84b8dce9ac5bc62861, type: 3}
+  - {fileID: 2710083036736832072, guid: 9024a3861c8168c488454c439ad751bb, type: 3}
+  - {fileID: 7645237064431594973, guid: 933f12ffc0bdc4e45b20c0b8ac6f4224, type: 3}
   muzzleFlash: {fileID: 727898442}
   ammoInfo: {fileID: 957183852}
   reloading:

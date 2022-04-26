@@ -12,25 +12,30 @@ public class Missile : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.collider.tag.Equals("Enemy"))
-        {
-            col.gameObject.GetComponent<ZombieHealth>().Damage(100);
-            
-            if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
-            {
-                Destroy(col.gameObject);
-            }
-        }
-        if (!col.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(gameObject);
-        }
+    { 
+        Destroy(gameObject);
+       OnDestroy();
     }
-
+    
     private void OnDestroy()
     {
         GameObject missileExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
+        
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(missileExplosion.transform.position, 25);
+        foreach (Collider2D collider2D in colliders)
+        {
+            if (collider2D.tag.Equals("Enemy"))
+            {
+                collider2D.gameObject.GetComponent<ZombieHealth>().Damage(25);
+                
+                if (collider2D.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+                {
+                    Destroy(collider2D.gameObject);
+                }
+            }
+            
+        }
+        
         Destroy(missileExplosion,0.5f);
     }
 
