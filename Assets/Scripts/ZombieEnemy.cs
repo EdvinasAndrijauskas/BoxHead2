@@ -40,7 +40,6 @@ public class ZombieEnemy : MonoBehaviour
         if (col.collider.tag.Equals("Soldier"))
         {
             anim.SetTrigger("Attack");
-            //Maybe variable in here?
             col.gameObject.GetComponent<PlayerHealth>().Damage(20);
             Debug.Log(col.gameObject.GetComponent<PlayerHealth>().CurrentHealth +
                       "->>>>>>>>>>>>>>>>>>>>> PLAYER DAMAGED TAKEN");
@@ -65,6 +64,7 @@ public class ZombieEnemy : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+            anim.SetFloat("Speed", 0f);
         }
     }
 }
