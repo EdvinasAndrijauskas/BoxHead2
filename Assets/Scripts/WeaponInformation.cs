@@ -44,7 +44,7 @@ public class WeaponInformation : MonoBehaviour
         {
             GetComponent<Image>().sprite = grenadeLauncher;
         }
-        if (weaponId == WeaponId.Sniper.ToString())
+        if (weaponId == WeaponId.Railgun.ToString())
         {
             GetComponent<Image>().sprite = sniper;
         }

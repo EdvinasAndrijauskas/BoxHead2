@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using data;
@@ -6,6 +7,7 @@ using model;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GunShooting : MonoBehaviour
 {    
@@ -164,7 +166,7 @@ public class GunShooting : MonoBehaviour
             {
                 GrenadeLauncherShooting();
             }
-            else if (weaponId == WeaponId.Sniper.ToString())
+            else if (weaponId == WeaponId.Railgun.ToString())
             {
                 SniperShooting();
             }
@@ -213,12 +215,8 @@ public class GunShooting : MonoBehaviour
     
     private void GrenadeLauncherShooting()
     {
-        /*GameObject bullet = Instantiate(FindProjectile("EMP_Grenade"), firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);*/
-        
         float numberOfProjectiles = 3;
-        float spreadAngle = 40f;
+        float spreadAngle = 25f;
         float angleStep = spreadAngle / numberOfProjectiles;
         float centeringOffset = (spreadAngle / 2) - (angleStep / 2);
         
@@ -228,8 +226,8 @@ public class GunShooting : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(firePoint.rotation.eulerAngles + currentBulletAngle);
 
             GameObject bullet = Instantiate(FindProjectile("EMP_Grenade"), firePoint.position, rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(bullet.transform.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+            Rigidbody2D bulletBody = bullet.GetComponent<Rigidbody2D>();
+            bulletBody.AddForce(bullet.transform.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
 
         }
     }
@@ -260,33 +258,23 @@ public class GunShooting : MonoBehaviour
         }
     }
     
-    //TODO: In progress
     void SniperShooting()
     {
-        //Use debug with gizmo
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.up) * 10f, Color.red);
-        
         var position = firePoint.position;
-        RaycastHit2D hit = Physics2D.Raycast(position, transform.right,100f);
-            
-        var trail = Instantiate(bulletPrefab, position, firePoint.rotation);
-        var trailScript = trail.GetComponent<BulletTrail>();
-            
+        RaycastHit2D hit = Physics2D.Raycast(position, firePoint.up,100f);
+        GameObject laser = Instantiate(FindProjectile("Laser"), position, firePoint.rotation);
+
         if (hit.collider != null)
         {
-            trailScript.SetTargetPosition(hit.point);
-            var hittable = hit.collider.GetComponent<IShootingRayCast>();
-            hittable?.ReceiveDamage(hit);
-
-            Debug.Log("HIT SOMEThING : " + hit.collider.name);
+            laser.GetComponent<Laser>().SetTargetPosition(hit.point);
         }
         else
         {
-            var endPosition = firePoint.position + transform.right * 100f;
-            trailScript.SetTargetPosition(endPosition);
+            var endPosition = firePoint.position + transform.up * 100f;
+            laser.GetComponent<Laser>().SetTargetPosition(endPosition);
         }
-        
     }
+    
 }
 
 

@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class BulletTrail : MonoBehaviour
 {
+
     private Vector3 _startPosition;
     private Vector2 _endPosition;
     private float _progress;
-    
+
     [SerializeField] private float _speed = 40f;
     void Start()
     {
-        _startPosition = transform.position.WithAxis(Axis.Z, -1);
+        _startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -23,6 +24,6 @@ public class BulletTrail : MonoBehaviour
 
     public void SetTargetPosition(Vector3 targetPosition)
     {
-        _endPosition = targetPosition.WithAxis(Axis.Z, -1);
+        _endPosition = targetPosition;
     }
 }

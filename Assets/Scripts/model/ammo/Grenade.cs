@@ -16,6 +16,7 @@ public class Grenade : MonoBehaviour
 
     private void Update()
     {
+        transform.Translate(Vector3.up * Time.deltaTime);
         transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime));
         Stop(0.75f);
 

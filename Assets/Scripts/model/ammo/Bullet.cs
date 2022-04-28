@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 {
     private void Update()
     {
+        
         transform.Translate(Vector3.up * Time.deltaTime);
     }
 
