@@ -10,18 +10,14 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private HealthBar HealthBar;
 
     // Start is called before the first frame update
-    void Start()
+    private  void Start()
     {
         Health = 100;
         CurrentHealth = Health;
         HealthBar.SetMaxHealth(Health);
         InvokeRepeating("Heal", 3, 5);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    
 
     public void Damage(int damage)
     {
@@ -37,7 +33,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         {
             CurrentHealth += 10;
             if (CurrentHealth > 100) CurrentHealth = 100;
-            Debug.Log(CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> PLAYER HEALED");
+         //   Debug.Log(CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> PLAYER HEALED");
             HealthBar.SetHealth(CurrentHealth);
         }
     }

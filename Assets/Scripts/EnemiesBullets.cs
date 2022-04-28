@@ -11,14 +11,14 @@ public class EnemiesBullets : MonoBehaviour
     private Transform _player;
     private Vector2 _target;
 
-    void Start()
+    private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Soldier").transform;
         _target = new Vector2(_player.position.x, _player.position.y);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, _target, speed * Time.deltaTime);
         if (transform.position.x == _target.x && transform.position.y == _target.y)
@@ -34,7 +34,8 @@ public class EnemiesBullets : MonoBehaviour
             col.gameObject.GetComponent<PlayerHealth>().Damage(30);
             if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
             {
-                EnemySpawner.spawnAllowed = false;
+                //THIS ONE IS FOR OLD Spawner
+               // EnemySpawner.spawnAllowed = false;
                 col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByWizard");
                 col.gameObject.GetComponent<PlayerMovement>().enabled = false;
                 Destroy(col.gameObject, 1.5f);

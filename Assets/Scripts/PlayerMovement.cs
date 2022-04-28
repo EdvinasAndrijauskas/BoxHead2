@@ -6,22 +6,19 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] 
     private float speed;
-
     [SerializeField] 
     private float rotationSpeed;
-
     private float horizontalInput;
-
     private float verticalInput;
     private Animator anim;
-    // Start is called before the first frame update
-    void Start()
+   
+    private void Start()
     {
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
@@ -40,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
     
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (horizontalInput == 0)
         {

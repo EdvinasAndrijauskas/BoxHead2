@@ -123,6 +123,15 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
+========
+--- !u!4 &207756428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2127865062}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
 --- !u!1 &221096406
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,12 +254,12 @@ PrefabInstance:
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.6
+      value: -0.73
       objectReference: {fileID: 0}
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.2
+      value: 24.23
       objectReference: {fileID: 0}
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
@@ -294,6 +303,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8248ac4649e77941a42df95dbaeabb8, type: 3}
+--- !u!4 &719341247 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+    type: 3}
+  m_PrefabInstance: {fileID: 978491686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &868273845
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +400,6 @@ GameObject:
   - component: {fileID: 874714449}
   - component: {fileID: 874714448}
   - component: {fileID: 874714447}
-  - component: {fileID: 874714446}
   - component: {fileID: 874714445}
   - component: {fileID: 874714444}
   - component: {fileID: 874714443}
@@ -474,13 +488,14 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
 --- !u!114 &874714446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +513,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3388273069021624560, guid: bfdbaae72f568554a936f389726c8892,
     type: 3}
   bulletForce: 20
+========
+>>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
 --- !u!114 &874714447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,6 +617,78 @@ MonoBehaviour:
   bulletForce: 50
   fireRate: 5
   muzzleFlash: {fileID: 221096407}
+<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
+========
+--- !u!1001 &978491686
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4848648633230701669, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 14.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.883575
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8248ac4649e77941a42df95dbaeabb8, type: 3}
+>>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
 --- !u!1 &1160665346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,12 +1125,81 @@ PrefabInstance:
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.9
+      value: -35.5
       objectReference: {fileID: 0}
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.6
+      value: -11.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.883575
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a8248ac4649e77941a42df95dbaeabb8, type: 3}
+--- !u!1001 &2127865062
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4848648633230701669, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnPoint1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 51.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
@@ -1239,6 +1397,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
+      propertyPath: wizard
+      value: 
+      objectReference: {fileID: 8662701788299468422, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: zombie
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: enemiesAlive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waveCountdown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: timeBetweenWaves
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
       propertyPath: enemies.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -1252,12 +1442,46 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
+<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
       objectReference: {fileID: 8662701788299468425, guid: 135d5cff7b1e5164ab9365242fb83d7b,
         type: 3}
+========
+      objectReference: {fileID: 0}
+>>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
       propertyPath: spawnPoints.Array.size
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].name
+      value: First wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].rate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].name
+      value: Second wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].rate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[2].name
+      value: Second wave
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[2].rate
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
@@ -1278,7 +1502,103 @@ PrefabInstance:
         type: 3}
       propertyPath: spawnPoints.Array.data[3]
       value: 
-      objectReference: {fileID: 2142558193}
+      objectReference: {fileID: 207756428}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[4]
+      value: 
+      objectReference: {fileID: 719341247}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].count
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemy
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemy
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[2].count
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[2].enemy
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].wizard
+      value: 
+      objectReference: {fileID: 8662701788299468422, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].zombie
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].wizard
+      value: 
+      objectReference: {fileID: 8662701788299468422, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].zombie
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[0].enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 8662701788299468422, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 4084328723980650211, guid: 7be9688aa3154c3419cddbad89c630cc,
+        type: 3}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: waves.Array.data[1].enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 8662701788299468422, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3495d36fae3b3734e8917dfa06e77ffd, type: 3}
 --- !u!1001 &4848648633852294324
@@ -1301,12 +1621,12 @@ PrefabInstance:
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23
+      value: 37.9
       objectReference: {fileID: 0}
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.9
+      value: -10.8
       objectReference: {fileID: 0}
     - target: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
         type: 3}
@@ -1432,5 +1752,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
     m_RemovedComponents: []
+========
+    - target: {fileID: 8187660902016723827, guid: 24f6d9d370e4b04408751d3bcabee379,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187660902016723827, guid: 24f6d9d370e4b04408751d3bcabee379,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8187660902016723827, guid: 24f6d9d370e4b04408751d3bcabee379,
+        type: 3}
+      propertyPath: m_SleepingMode
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
+>>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
   m_SourcePrefab: {fileID: 100100000, guid: 24f6d9d370e4b04408751d3bcabee379, type: 3}
