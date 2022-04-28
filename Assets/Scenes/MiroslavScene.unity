@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 727898441}
   - component: {fileID: 727898442}
   - component: {fileID: 727898443}
-  m_Layer: 4
+  m_Layer: 0
   m_Name: MuzzleFlash
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ Animator:
   m_GameObject: {fileID: 727898440}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 183267db892b29f4bbee64f69964f5a3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3df1080fb48df1849bbfd14462930c17, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -765,10 +765,11 @@ MonoBehaviour:
   projectile:
   - {fileID: 7707096600066856009, guid: ecbce36e49b274c4094ef361acf508d7, type: 3}
   - {fileID: 8484058920959692465, guid: 15eedb7e4834ce84b8dce9ac5bc62861, type: 3}
-  - {fileID: 2710083036736832072, guid: 9024a3861c8168c488454c439ad751bb, type: 3}
+  - {fileID: 4218257376707124647, guid: 9f4f377eccbbaeb4ea60389d397ca34b, type: 3}
   - {fileID: 4932131182451629442, guid: c9c6c67e97a21c64c84c68b6a6176432, type: 3}
   - {fileID: 4974394893285988668, guid: 9a9ac1a90674b214a920fc650d924344, type: 3}
   muzzleFlash: {fileID: 727898442}
+  flame: {fileID: 13047882344210102, guid: 9f4f377eccbbaeb4ea60389d397ca34b, type: 3}
   ammoInfo: {fileID: 957183852}
   reloading:
     m_PersistentCalls:

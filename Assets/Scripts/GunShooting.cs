@@ -15,6 +15,7 @@ public class GunShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public List<GameObject> projectile;
     public Animator muzzleFlash;
+    public Animator flame;
     public Text ammoInfo;
     
     float _timeToFire = 0f;
@@ -208,9 +209,7 @@ public class GunShooting : MonoBehaviour
     
     private void FlamethrowerShooting()
     {
-        GameObject bullet = Instantiate(FindProjectile("Flame"), firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * _currentWeapon.bulletForce, ForceMode2D.Impulse);
+       Instantiate(FindProjectile("Flame"), firePoint.position, firePoint.rotation);
     }
     
     private void GrenadeLauncherShooting()

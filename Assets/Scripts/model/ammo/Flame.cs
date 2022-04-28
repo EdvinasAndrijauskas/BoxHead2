@@ -1,30 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using System;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Flame : MonoBehaviour
 {
-    private void Update()
+    private Transform firePoint;
+    private Animator animator;
+    private static Flame flame;
+    private float horizontalInput;
+    private Vector3 rotate;
+    private float verticalInput;
+    private void Awake()
     {
-        transform.Translate(Vector3.up * Time.deltaTime);
+        if (flame == null)
+        {
+            flame = this;
+            
+        }
+        else
+        {
+            Destroy(gameObject);
+
+        }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void Start()
     {
-        if (col.collider.tag.Equals("Enemy"))
+        animator = GetComponent<Animator>();
+        firePoint = GameObject.FindGameObjectWithTag("FirePoint").GetComponent<Transform>();
+        rotate = new Vector3(0,0,90 );
+        transform.Rotate(rotate);
+
+    }
+    
+    private void Update()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, firePoint.position, 100 * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(firePoint.rotation.eulerAngles  + rotate) ,
+            250 * Time.deltaTime);
+
+        if (Input.GetButtonUp("Shoot"))
         {
-            col.gameObject.GetComponent<ZombieHealth>().Damage(100);
+            animator.Play("Flamethrower End");
+            animator.fireEvents = false;
+            Destroy(gameObject,0.25f);
+        }
+    }
+
+    
+
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag.Equals("Enemy"))
+        {
+            col.gameObject.GetComponent<ZombieHealth>().Damage(1);
             
             if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
             {
                 Destroy(col.gameObject);
             }
-        }
-        if (!col.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(gameObject);
-        }
-    }
+        }    }
 
     void OnBecameInvisible() {
         Destroy(gameObject);

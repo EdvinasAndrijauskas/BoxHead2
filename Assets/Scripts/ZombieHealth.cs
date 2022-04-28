@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ZombieHealth : MonoBehaviour, IHealthSystem
 {
-    public int Health { get; set; }
-    public int CurrentHealth { get; set; }
+    public float Health { get; set; }
+    public float CurrentHealth { get; set; }
     [SerializeField] private HealthBar HealthBar;
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class ZombieHealth : MonoBehaviour, IHealthSystem
     }
 
 
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
         CurrentHealth -= damage;
         if (CurrentHealth < 0) CurrentHealth = 0;
