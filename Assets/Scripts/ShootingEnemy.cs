@@ -9,14 +9,13 @@ public class ShootingEnemy : MonoBehaviour
     [SerializeField] private float retreaDistance;
     private float timeBtwShots;
     [SerializeField] private float startTimeBtwShots;
-
     [SerializeField] private Transform player;
     [SerializeField] private GameObject rightFlame;
     [SerializeField] private GameObject leftFlame;
     private bool _facingRight;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Soldier").transform;
         timeBtwShots = startTimeBtwShots;
@@ -24,12 +23,12 @@ public class ShootingEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (player != null)
         {
-            if (player.position.x > transform.position.x &&
-                _facingRight) //if the target is to the right of enemy and the enemy is not facing right
+            if (player.position.x > transform.position.x && _facingRight) 
+                //if the target is to the right of enemy and the enemy is not facing right
                 Flip();
             if (player.position.x < transform.position.x && !_facingRight)
                 Flip();
@@ -71,7 +70,7 @@ public class ShootingEnemy : MonoBehaviour
         }
     }
 
-    void Flip()
+    private void Flip()
     {
         Vector3 scale = transform.localScale;
         scale.x *= -1;

@@ -130,7 +130,7 @@ public class GunShooting : MonoBehaviour
             var hittable = hit.collider.GetComponent<IShootingRayCast>();
             hittable?.ReceiveDamage(hit);
 
-            Debug.Log("HIT SOMEThING : " + hit.collider.name);
+          //  Debug.Log("HIT SOMEThING : " + hit.collider.name);
         }
         else
         {

@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
@@ -11,90 +11,99 @@ public class EnemySpawner : MonoBehaviour
         Spawning,
         Waiting,
         Counting
-    };
-    
-    [System.Serializable]
-    public class Wave
-    {
-        public string name;
-        public int count;
-        public float rate;
     }
     
+    [SerializeField] private Transform zombie;
+    [SerializeField] private Transform wizard;
     [SerializeField] private Transform[] spawnPoints;
-    [SerializeField] private GameObject[] enemies;
-    [SerializeField] private Wave[] waves;
-    private int nextWave = 0;
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float waveCountdown;
+    [SerializeField] private GameObject countDownCanvas;
+    [SerializeField] private Text waveCountDownText;
+    [SerializeField] private Text levelCounter;
+
+    private int  _waveNumber = 1;
+    private SpawnState _state = SpawnState.Counting;
+    private float _searchCountDown = 1f;
+    private double _initialWizardPercentageChance = 0.15;
+
     
-    private SpawnState state = SpawnState.Counting;
-    private float searchCountDown = 1f;
-    
-    private int _randomSpawnPoint;
-    private int _randomEnemy;
-    public static bool spawnAllowed;
 
     private void Start()
     {
-        spawnAllowed = true;
-        InvokeRepeating("SpawnAnEnemy", 0f, 1f);
-    }
-
-    private void SpawnAnEnemy()
-    {
-        if (spawnAllowed)
+        if (spawnPoints.Length == 0)
         {
-            _randomSpawnPoint = Random.Range(0, spawnPoints.Length);
-            _randomEnemy = Random.Range(0, enemies.Length);
-            Instantiate(enemies[_randomEnemy], spawnPoints[_randomSpawnPoint].position, Quaternion.identity);
+            Debug.LogError("No spawn points referenced");
         }
+        waveCountdown = timeBetweenWaves;
     }
 
-    void WaveCompleted()
-    {
-        Debug.Log("Wave completed");
-
-        state = SpawnState.Counting;
-        waveCountdown = timeBetweenWaves;
-
-        if (nextWave + 1 > waves.Length - 1)
+    private void Update () {
+        if (_state == SpawnState.Waiting)
         {
-            nextWave = 0;
-            Debug.Log("All waves Complete.. LOOOPING");
+            if (!EnemyIsAlive())
+            {            
+                WaveCompleted();
+            }
+            else
+            {
+                return;
+            }
+        }
+        if (waveCountdown <= 0) {
+            countDownCanvas.SetActive(false);
+            if (_state != SpawnState.Spawning)
+            {
+                StartCoroutine(SpawnWave());
+            }
         }
         else
         {
-            nextWave++;
+            waveCountdown -= Time.deltaTime;
+            waveCountDownText.text = Mathf.Round(waveCountdown).ToString();
         }
     }
 
-    bool EnemyIsAlive()
+    private void WaveCompleted()
     {
-        searchCountDown -= Time.deltaTime;
-        if (searchCountDown <= 0f)
+        Debug.Log("Wave completed");
+        _state = SpawnState.Counting;
+        waveCountdown = timeBetweenWaves;
+        countDownCanvas.SetActive(true);
+    }
+
+    private bool EnemyIsAlive()
+    {
+        _searchCountDown -= Time.deltaTime;
+        if (!(_searchCountDown <= 0f)) return true;
+        _searchCountDown = 1f;
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length != 0) return true;
+        return false;
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        _state = SpawnState.Spawning;
+        var howManyEnemiesToSpawn = 6 + _waveNumber * _waveNumber/2;
+       
+      
+        for (int i = 0; i < howManyEnemiesToSpawn ; i++)
         {
-            searchCountDown = 1f;
-            if (GameObject.FindGameObjectsWithTag("Enemy") == null)
+            var spawningEnemy = Random.value <= 0.15 ? wizard : zombie;
+            if (_waveNumber % 5 == 0)
             {
-                return false;
+                spawningEnemy = Random.value <= _initialWizardPercentageChance + 0.05 ? wizard : zombie;
             }
+            SpawnAnEnemy(spawningEnemy);
+            yield return new WaitForSeconds(0.5f);
         }
-
-        return true;
+        _waveNumber++;
+        levelCounter.text = _waveNumber.ToString();
+        _state = SpawnState.Waiting;
     }
-
-    IEnumerable SpawnWave(Wave _wave)
+    private void SpawnAnEnemy(Transform enemy)
     {
-        Debug.Log("SPawning Wave: ");
-        state = SpawnState.Spawning;
-        for (int i = 0; i < _wave.count; i++)
-        {
-            SpawnAnEnemy();
-            yield return new WaitForSeconds(1f / _wave.rate);
-        }
-
-        state = SpawnState.Waiting;
-        yield break;
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate(enemy, sp.position, sp.rotation);
     }
 }

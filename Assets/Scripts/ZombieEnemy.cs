@@ -5,22 +5,20 @@ public class ZombieEnemy : MonoBehaviour
 {
     private Rigidbody2D rb;
     private GameObject target;
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed;
     private Vector2 directionToTarget;
     private Animator anim;
     private PlayerHealth PlayerHealth;
 
-    void Start()
+    private void Start()
     {
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Soldier");
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = Random.Range(1f, 3f);
         anim.SetFloat("Speed", moveSpeed);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (target != null)
         {
@@ -30,7 +28,7 @@ public class ZombieEnemy : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         MoveMonster();
     }
@@ -41,16 +39,11 @@ public class ZombieEnemy : MonoBehaviour
         {
             anim.SetTrigger("Attack");
             col.gameObject.GetComponent<PlayerHealth>().Damage(20);
-            Debug.Log(col.gameObject.GetComponent<PlayerHealth>().CurrentHealth +
-                      "->>>>>>>>>>>>>>>>>>>>> PLAYER DAMAGED TAKEN");
-            if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
-            {
-                target = null;
-                EnemySpawner.spawnAllowed = false;
-                col.gameObject.GetComponent<PlayerMovement>().enabled = false;
-                col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByZombie");
-                Destroy(col.gameObject, 1.5f);
-            }
+          if (!col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0)) return;
+            target = null;
+            col.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByZombie");
+            Destroy(col.gameObject, 1.5f);
         }
     }
 
