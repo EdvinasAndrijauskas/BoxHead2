@@ -16,7 +16,7 @@ public class ShootingEnemy : MonoBehaviour
     private bool _facingRight;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Soldier").transform;
         timeBtwShots = startTimeBtwShots;
@@ -24,7 +24,7 @@ public class ShootingEnemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         Following();
     }
@@ -33,8 +33,8 @@ public class ShootingEnemy : MonoBehaviour
     {
         if (player != null)
         {
-            if (player.position.x > transform.position.x &&
-                _facingRight) //if the target is to the right of enemy and the enemy is not facing right
+            if (player.position.x > transform.position.x && _facingRight) 
+                //if the target is to the right of enemy and the enemy is not facing right
                 Flip();
             if (player.position.x < transform.position.x && !_facingRight)
                 Flip();
@@ -81,7 +81,7 @@ public class ShootingEnemy : MonoBehaviour
         }
     }
 
-    void Flip()
+    private void Flip()
     {
         Vector3 scale = transform.localScale;
         scale.x *= -1;

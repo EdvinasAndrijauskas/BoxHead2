@@ -9,7 +9,7 @@ public class ZombieHealth : MonoBehaviour, IHealthSystem
     [SerializeField] private HealthBar HealthBar;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Health = 100;
         CurrentHealth = Health;
@@ -17,7 +17,7 @@ public class ZombieHealth : MonoBehaviour, IHealthSystem
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 
