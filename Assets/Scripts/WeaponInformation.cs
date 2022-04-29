@@ -13,7 +13,7 @@ public class WeaponInformation : MonoBehaviour
     public Sprite javelin;
     public Sprite flamethrower;
     public Sprite grenadeLauncher;
-    public Sprite sniper;
+    public Sprite railgun;
 
     public void UpdateWeaponImage(string weaponId)
     {
@@ -46,7 +46,7 @@ public class WeaponInformation : MonoBehaviour
         }
         if (weaponId == WeaponId.Railgun.ToString())
         {
-            GetComponent<Image>().sprite = sniper;
+            GetComponent<Image>().sprite = railgun;
         }
     }
     

@@ -1,45 +1,54 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : MonoBehaviour
+namespace model.ammo
 {
-    public GameObject explosion;
-    private void Update()
+    public class Missile : MonoBehaviour, IAmmoDamage
     {
-        transform.Translate(Vector3.up * Time.deltaTime);
-    }
+        public GameObject explosion;
+        [SerializeField] private float ammoDamage;
+        private float _explosionRadius = 25;
 
-    private void OnCollisionEnter2D(Collision2D col)
-    { 
-        Destroy(gameObject);
-       OnDestroy();
-    }
-    
-    private void OnDestroy()
-    {
-        GameObject missileExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
-        
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(missileExplosion.transform.position, 25);
-        foreach (Collider2D collider2D in colliders)
+        private void Update()
         {
-            if (collider2D.tag.Equals("Enemy"))
+            transform.Translate(Vector3.up * Time.deltaTime);
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        { 
+            Destroy(gameObject);
+            OnDestroy();
+        }
+    
+        private void OnDestroy()
+        {
+            GameObject missileExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
+        
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(missileExplosion.transform.position, _explosionRadius);
+            foreach (Collider2D collider in colliders)
             {
-                collider2D.gameObject.GetComponent<ZombieHealth>().Damage(25);
+               TakeDamage(collider, ammoDamage);
+            
+            }
+        
+            Destroy(missileExplosion,0.5f);
+        }
+
+        void OnBecameInvisible() {
+            Destroy(gameObject);
+        }
+
+        public void TakeDamage(Collider2D col, float damage)
+        {
+            if (col.tag.Equals("Enemy"))
+            {
+                col.gameObject.GetComponent<ZombieHealth>().Damage(damage);
                 
-                if (collider2D.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+                if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
                 {
-                    Destroy(collider2D.gameObject);
+                    Destroy(col.gameObject);
                 }
             }
-            
-        }
-        
-        Destroy(missileExplosion,0.5f);
-    }
 
-    void OnBecameInvisible() {
-        Destroy(gameObject);
+        }
     }
 }

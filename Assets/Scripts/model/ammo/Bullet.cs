@@ -1,35 +1,39 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace model.ammo
 {
-    private void Update()
+    public class Bullet : MonoBehaviour, IAmmoDamage
     {
-        
-        transform.Translate(Vector3.up * Time.deltaTime);
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.collider.tag.Equals("Enemy"))
+        [SerializeField] private float ammoDamage;
+        private void Update()
         {
-            col.gameObject.GetComponent<ZombieHealth>().Damage(25);
-            //Debug.Log(col.gameObject.GetComponent<ZombieHealth>().CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> ZOMBIE DAMAGED TAKEN");
-            if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
-            {
-                Destroy(col.gameObject);
-            }
+            transform.Translate(Vector3.up * Time.deltaTime);
         }
-        if (!col.gameObject.CompareTag("Bullet"))
+
+        private void OnCollisionEnter2D(Collision2D col)
         {
+            TakeDamage(col.collider,ammoDamage);
+        }
+    
+        void OnBecameInvisible() {
             Destroy(gameObject);
         }
-    }
-    
-    void OnBecameInvisible() {
-        Destroy(gameObject);
+
+        public void TakeDamage(Collider2D col, float damage)
+        {
+            if (col.tag.Equals("Enemy"))
+            {
+                col.gameObject.GetComponent<ZombieHealth>().Damage(damage);
+                if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+                {
+                    Destroy(col.gameObject);
+                }
+            }
+            if (!col.gameObject.CompareTag("Bullet"))
+            {
+                Destroy(gameObject);
+            }
+        
+        }
     }
 }

@@ -1,68 +1,72 @@
-
-using System;
-using System.Security.Cryptography;
 using UnityEngine;
 
-public class Flame : MonoBehaviour
+namespace model.ammo
 {
-    private Transform firePoint;
-    private Animator animator;
-    private static Flame flame;
-    private float horizontalInput;
-    private Vector3 rotate;
-    private float verticalInput;
-    private void Awake()
+    public class Flame : MonoBehaviour, IAmmoDamage
     {
-        if (flame == null)
-        {
-            flame = this;
-            
-        }
-        else
-        {
-            Destroy(gameObject);
-
-        }
-    }
-
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-        firePoint = GameObject.FindGameObjectWithTag("FirePoint").GetComponent<Transform>();
-        rotate = new Vector3(0,0,90 );
-        transform.Rotate(rotate);
-
-    }
+        private Transform _firePoint;
+        private Animator _animator;
+        private static Flame _flame;
+        private Vector3 _rotateFlame;
     
-    private void Update()
-    {
-        transform.position = Vector2.MoveTowards(transform.position, firePoint.position, 100 * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(firePoint.rotation.eulerAngles  + rotate) ,
-            250 * Time.deltaTime);
-
-        if (Input.GetButtonUp("Shoot"))
+        [SerializeField] private float ammoDamage;
+ 
+        private void Awake()
         {
-            animator.Play("Flamethrower End");
-            animator.fireEvents = false;
-            Destroy(gameObject,0.25f);
-        }
-    }
-
-    
-
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.tag.Equals("Enemy"))
-        {
-            col.gameObject.GetComponent<ZombieHealth>().Damage(1);
-            
-            if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+            if (_flame == null)
             {
-                Destroy(col.gameObject);
+                _flame = this;
+            
             }
-        }    }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
-    void OnBecameInvisible() {
-        Destroy(gameObject);
+        private void Start()
+        {
+            _animator = GetComponent<Animator>();
+            _firePoint = GameObject.FindGameObjectWithTag("FirePoint").GetComponent<Transform>();
+            _rotateFlame = new Vector3(0,0,90 );
+            transform.Rotate(_rotateFlame);
+
+        }
+    
+        private void Update()
+        {
+            transform.position = Vector2.MoveTowards(transform.position, _firePoint.position, 100 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_firePoint.rotation.eulerAngles  + _rotateFlame) ,
+                250 * Time.deltaTime);
+
+            if (Input.GetButtonUp("Shoot"))
+            {
+                _animator.Play("Flamethrower End");
+                _animator.fireEvents = false;
+                Destroy(gameObject,0.25f);
+            }
+        }
+    
+        private void OnTriggerStay2D(Collider2D col)
+        {
+            TakeDamage(col,ammoDamage);  
+        }
+
+        void OnBecameInvisible() {
+            Destroy(gameObject);
+        }
+
+        public void TakeDamage(Collider2D col, float damage)
+        {
+            if (col.tag.Equals("Enemy"))
+            {
+                col.gameObject.GetComponent<ZombieHealth>().Damage(ammoDamage);
+            
+                if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+                {
+                    Destroy(col.gameObject);
+                }
+            }    
+        }
     }
 }

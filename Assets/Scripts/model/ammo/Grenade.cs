@@ -1,62 +1,70 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Grenade : MonoBehaviour
+namespace model.ammo
 {
-    public GameObject explosion;
-    public float timeToExplode;
-    private float countdown;
-    
-    private void Start()
+    public class Grenade : MonoBehaviour, IAmmoDamage
     {
-        countdown = timeToExplode;
-    }
+        public GameObject explosion;
+        public float timeToExplode;
+        private float _countdown;
+        private float _explosionRadius = 8;
 
-    private void Update()
-    {
-        transform.Translate(Vector3.up * Time.deltaTime);
-        transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime));
-        Stop(0.75f);
+        [SerializeField] private float ammoDamage;
 
-        countdown -= Time.deltaTime;
-        if (countdown <= 0)
+        private void Start()
         {
-            Explode();
+            _countdown = timeToExplode;
+        }
+
+        private void Update()
+        {
+            transform.Translate(Vector3.up * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime));
+            Stop(0.75f);
+
+            _countdown -= Time.deltaTime;
+            if (_countdown <= 0)
+            {
+                Explode();
+                Destroy(gameObject);
+            }
+        }
+
+        private void Stop(float stop)
+        {
+            Destroy(gameObject.GetComponent<Rigidbody2D>(),stop);
+            Destroy(gameObject.GetComponent<BoxCollider2D>(),stop);
+        }
+
+        private void Explode()
+        {
+            GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionEffect.transform.position, _explosionRadius);
+            foreach (Collider2D collider in colliders)
+            {
+                TakeDamage(collider,ammoDamage);
+            
+            }
+            Destroy(explosionEffect,0.5f);
             Destroy(gameObject);
         }
-    }
 
-    private void Stop(float stop)
-    {
-        Destroy(gameObject.GetComponent<Rigidbody2D>(),stop);
-        Destroy(gameObject.GetComponent<BoxCollider2D>(),stop);
-    }
+        void OnBecameInvisible() {
+            Stop(0.0f);
+        }
 
-    private void Explode()
-    {
-        GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionEffect.transform.position, 8);
-        foreach (Collider2D collider2D in colliders)
+        public void TakeDamage(Collider2D col, float damage)
         {
-            if (collider2D.tag.Equals("Enemy"))
+            if (col.tag.Equals("Enemy"))
             {
-                collider2D.gameObject.GetComponent<ZombieHealth>().Damage(25);
+                col.gameObject.GetComponent<ZombieHealth>().Damage(damage);
                 
-                if (collider2D.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+                if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
                 {
-                    Destroy(collider2D.gameObject);
+                    Destroy(col.gameObject);
                 }
             }
-            
         }
-        Destroy(explosionEffect,0.5f);
-        Destroy(gameObject);
-    }
-
-    void OnBecameInvisible() {
-        Stop(0.0f);
     }
 }

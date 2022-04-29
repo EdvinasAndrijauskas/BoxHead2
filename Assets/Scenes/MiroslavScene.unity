@@ -423,8 +423,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2066070557
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -760,16 +760,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 370486996}
-  bulletPrefab: {fileID: 5991586403301259665, guid: bdc19c475cdef9f46bea0191b4d6edde,
-    type: 3}
   projectile:
-  - {fileID: 7707096600066856009, guid: ecbce36e49b274c4094ef361acf508d7, type: 3}
+  - {fileID: 5991586403301259665, guid: bdc19c475cdef9f46bea0191b4d6edde, type: 3}
   - {fileID: 8484058920959692465, guid: 15eedb7e4834ce84b8dce9ac5bc62861, type: 3}
   - {fileID: 4218257376707124647, guid: 9f4f377eccbbaeb4ea60389d397ca34b, type: 3}
   - {fileID: 4932131182451629442, guid: c9c6c67e97a21c64c84c68b6a6176432, type: 3}
   - {fileID: 4974394893285988668, guid: 9a9ac1a90674b214a920fc650d924344, type: 3}
   muzzleFlash: {fileID: 727898442}
-  flame: {fileID: 13047882344210102, guid: 9f4f377eccbbaeb4ea60389d397ca34b, type: 3}
   ammoInfo: {fileID: 957183852}
   reloading:
     m_PersistentCalls:
@@ -797,7 +794,9 @@ GameObject:
   - component: {fileID: 1711488171}
   - component: {fileID: 1711488170}
   - component: {fileID: 1711488169}
-  m_Layer: 0
+  - component: {fileID: 1711488172}
+  - component: {fileID: 1711488173}
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -869,6 +868,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711488172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711488168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 1bef4bc10071dde429b729a92d9fbdc4, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &1711488173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711488168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1711488171}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &1759539333
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,6 +1074,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier with health
       objectReference: {fileID: 0}
+    - target: {fileID: 2982100509362170008, guid: 923ea5cc719640842ac7a2c496274f03,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982100509362170009, guid: 923ea5cc719640842ac7a2c496274f03,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2982100509362170011, guid: 923ea5cc719640842ac7a2c496274f03,
         type: 3}
       propertyPath: m_RootOrder
@@ -1071,12 +1157,12 @@ PrefabInstance:
     - target: {fileID: 2982100509573386564, guid: 923ea5cc719640842ac7a2c496274f03,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0102
+      value: -0.013
       objectReference: {fileID: 0}
     - target: {fileID: 2982100509573386564, guid: 923ea5cc719640842ac7a2c496274f03,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1532
+      value: 0.132
       objectReference: {fileID: 0}
     - target: {fileID: 2982100509573386564, guid: 923ea5cc719640842ac7a2c496274f03,
         type: 3}
@@ -1112,6 +1198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982100509573386565, guid: 923ea5cc719640842ac7a2c496274f03,
+        type: 3}
+      propertyPath: m_TagString
+      value: FirePoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 923ea5cc719640842ac7a2c496274f03, type: 3}

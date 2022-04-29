@@ -15,9 +15,10 @@ namespace model
         public int remainingBackupAmmo { get; set; }
         public float reloadTime { get; set; }
         public bool isRealoding { get; set; }
+        public string ammoType { get; set; }
         
         
-        public Weapon(string weaponId, int magazineCapacity, float bulletForce, float fireRate,float reloadTime,  int maxBackupAmmo = -1)
+        public Weapon(string weaponId, int magazineCapacity, float bulletForce, float fireRate,float reloadTime, string ammoType, int maxBackupAmmo = -1)
         {
             this.weaponId = weaponId;
             this.maxBackupAmmo = maxBackupAmmo;
@@ -25,6 +26,7 @@ namespace model
             this.bulletForce = bulletForce;
             this.fireRate = fireRate;
             this.reloadTime = reloadTime;
+            this.ammoType = ammoType;
             
             currentMagazineAmmo = magazineCapacity;
             remainingBackupAmmo = maxBackupAmmo;
