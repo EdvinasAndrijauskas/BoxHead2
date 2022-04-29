@@ -16,18 +16,16 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
     public Text currentAmmo;
     public Text backupAmmo;
     public Text weaponName;
-
-    float _timeToFire = 0f;
-    Weapon _currentWeapon;
-    private readonly List<Weapon> _weapons = WeaponLibrary.Weapons;
-    int _currentWeaponIndex = 0;
     public UnityEvent<float> reloading;
+
+    private float _timeToFire = 0f;
+    private Weapon _currentWeapon;
+    private readonly List<Weapon> _weapons = WeaponLibrary.Weapons;
+    private int _currentWeaponIndex = 0;
     private float _currentDelay = 1f;
     private bool _canShoot = true;
     private static readonly int Shoot = Animator.StringToHash("Shoot");
-
-    
-    private Coroutine reloadCoroutine;
+    private Coroutine _reloadCoroutine;
 
     private void Start()
     {
@@ -60,7 +58,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         {
             if (_currentWeapon.isRealoding)
             {
-                StopCoroutine(reloadCoroutine);
+                StopCoroutine(_reloadCoroutine);
                 _canShoot = true;
                 _currentWeapon.isRealoding = false;
                 reloading?.Invoke(1 );
@@ -79,7 +77,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         {
             if (_currentWeapon.isRealoding)
             {            
-                StopCoroutine(reloadCoroutine);
+                StopCoroutine(_reloadCoroutine);
                 _canShoot = true;
                 _currentWeapon.isRealoding = false;
                 reloading?.Invoke(1 );
@@ -96,7 +94,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //reload
         if (Input.GetKeyDown(KeyCode.R))
         { 
-            reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
+            _reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
         }
 
         if (_currentWeapon.isRealoding)
@@ -129,8 +127,8 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
     {
         if (!_canShoot)
         {
-            Invoke(nameof(NoAmmoBlink), 0f);
-            Invoke(nameof(RemoveAmmoBlink), 0.1f);
+            Invoke(nameof(ReloadingBlink), 0f);
+            Invoke(nameof(RemoveReloadingBlink), 0.1f);
         }
 
         int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
@@ -139,25 +137,40 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         {
             if (_currentWeapon.currentMagazineAmmo == 0)
             {
-                reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
+                _reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
+                if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
+                {
+                    GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>().EndFlame();
+                }
             }
             else
             {
                 if (_canShoot) _currentDelay = _currentWeapon.reloadTime;
                 _timeToFire = Time.time + 1f / _currentWeapon.fireRate;
                 FindWeaponShooting(_currentWeapon);
-                muzzleFlash.SetTrigger(Shoot);
+                
+                if (_currentWeapon.weaponId != WeaponId.Railgun.ToString()) {
+                    muzzleFlash.SetTrigger(Shoot);
+                }
+
+            }
+        }
+        else
+        {
+            if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
+            {
+                GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>().EndFlame();
             }
         }
         
     }
 
-    private void NoAmmoBlink()
+    private void ReloadingBlink()
     {
         GameObject.FindGameObjectWithTag("BulletBar").GetComponent<Image>().color = Color.red;
     }
     
-    private void RemoveAmmoBlink()
+    private void RemoveReloadingBlink()
     {
         GameObject.FindGameObjectWithTag("BulletBar").GetComponent<Image>().color = Color.white;
     }

@@ -18,7 +18,7 @@ namespace model
         public string ammoType { get; set; }
         
         
-        public Weapon(string weaponId, int magazineCapacity, float bulletForce, float fireRate,float reloadTime, string ammoType, int maxBackupAmmo = -1)
+        public Weapon(string weaponId, int magazineCapacity,float fireRate, float reloadTime, string ammoType, float bulletForce = -1, int maxBackupAmmo = -1)
         {
             this.weaponId = weaponId;
             this.maxBackupAmmo = maxBackupAmmo;

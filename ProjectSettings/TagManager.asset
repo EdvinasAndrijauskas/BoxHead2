@@ -22,6 +22,9 @@ TagManager:
   - HealthBar
   - Missile
   - FirePoint
+  - BulletBar
+  - Flame
+  - FlameFirePoint
   layers:
   - Default
   - TransparentFX

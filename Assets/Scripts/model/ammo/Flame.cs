@@ -4,19 +4,17 @@ namespace model.ammo
 {
     public class Flame : MonoBehaviour, IAmmoDamage
     {
+        [SerializeField] private float ammoDamage;
+
         private Transform _firePoint;
         private Animator _animator;
         private static Flame _flame;
         private Vector3 _rotateFlame;
-    
-        [SerializeField] private float ammoDamage;
- 
         private void Awake()
         {
             if (_flame == null)
             {
                 _flame = this;
-            
             }
             else
             {
@@ -27,7 +25,7 @@ namespace model.ammo
         private void Start()
         {
             _animator = GetComponent<Animator>();
-            _firePoint = GameObject.FindGameObjectWithTag("FirePoint").GetComponent<Transform>();
+            _firePoint = GameObject.FindGameObjectWithTag("FlameFirePoint").GetComponent<Transform>();
             _rotateFlame = new Vector3(0,0,90 );
             transform.Rotate(_rotateFlame);
 
@@ -35,20 +33,27 @@ namespace model.ammo
     
         private void Update()
         {
-            transform.position = Vector2.MoveTowards(transform.position, _firePoint.position, 100 * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _firePoint.position , 100 * Time.deltaTime);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_firePoint.rotation.eulerAngles  + _rotateFlame) ,
-                250 * Time.deltaTime);
+                350 * Time.deltaTime);
 
-            bool endFlame = Input.GetButtonUp("Shoot") || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) ||
+            bool endFlame = Input.GetButtonUp("Shoot") ||
+                            Input.GetKeyDown(KeyCode.E) ||
+                            Input.GetKeyDown(KeyCode.R) ||
                             Input.GetKeyDown(KeyCode.Q);
             if (endFlame)
             {
-                _animator.Play("Flamethrower End");
-                _animator.fireEvents = false;
-                Destroy(gameObject,0.25f);
+               EndFlame();
             }
         }
-    
+
+        public void EndFlame()
+        {
+            _animator.Play("Flamethrower End");
+            _animator.fireEvents = false;
+            Destroy(gameObject,0.25f);
+        }
+
         private void OnTriggerStay2D(Collider2D col)
         {
             TakeDamage(col,ammoDamage);  

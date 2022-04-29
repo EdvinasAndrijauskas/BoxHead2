@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6398383332463240897}
   m_Layer: 9
   m_Name: Flame
-  m_TagString: Bullet
+  m_TagString: Flame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b767f243db11b420fbc7811253517d9d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
