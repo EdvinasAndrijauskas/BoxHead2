@@ -77,8 +77,8 @@ public class EnemySpawner : MonoBehaviour
         _searchCountDown -= Time.deltaTime;
         if (!(_searchCountDown <= 0f)) return true;
         _searchCountDown = 1f;
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length != 0) return true;
-        return false;
+        if (GameObject.FindGameObjectsWithTag("Zombie").Length == 0 && GameObject.FindGameObjectsWithTag("Wizard").Length == 0) return false;
+        return true;
     }
 
     private IEnumerator SpawnWave()

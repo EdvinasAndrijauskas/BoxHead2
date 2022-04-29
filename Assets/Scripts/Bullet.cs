@@ -13,11 +13,18 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.collider.tag.Equals("Enemy"))
+        if (col.collider.tag.Equals("Zombie"))
         {
             col.gameObject.GetComponent<ZombieHealth>().Damage(25);
-         //   Debug.Log(col.gameObject.GetComponent<ZombieHealth>().CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> ZOMBIE DAMAGED TAKEN");
             if (col.gameObject.GetComponent<ZombieHealth>().CurrentHealth.Equals(0))
+            {
+                Destroy(col.gameObject);
+            }
+        }
+        if (col.collider.tag.Equals("Wizard"))
+        {
+            col.gameObject.GetComponent<Wizardhealth>().Damage(20);
+            if (col.gameObject.GetComponent<Wizardhealth>().CurrentHealth.Equals(0))
             {
                 Destroy(col.gameObject);
             }

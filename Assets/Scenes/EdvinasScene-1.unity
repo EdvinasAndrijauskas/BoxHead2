@@ -1527,7 +1527,7 @@ PrefabInstance:
         type: 3}
       propertyPath: wizard
       value: 
-      objectReference: {fileID: 8662701788299468422, guid: 135d5cff7b1e5164ab9365242fb83d7b,
+      objectReference: {fileID: 3382974571308138689, guid: c3f94641f9969724ba3c31d6c3986ac0,
         type: 3}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}

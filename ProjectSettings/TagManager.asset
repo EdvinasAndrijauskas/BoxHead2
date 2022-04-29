@@ -20,6 +20,8 @@ TagManager:
   - Soldier
   - Bullet
   - HealthBar
+  - Wizard
+  - Zombie
   layers:
   - Default
   - TransparentFX
