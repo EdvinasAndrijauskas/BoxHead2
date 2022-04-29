@@ -39,7 +39,9 @@ namespace model.ammo
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(_firePoint.rotation.eulerAngles  + _rotateFlame) ,
                 250 * Time.deltaTime);
 
-            if (Input.GetButtonUp("Shoot"))
+            bool endFlame = Input.GetButtonUp("Shoot") || Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) ||
+                            Input.GetKeyDown(KeyCode.Q);
+            if (endFlame)
             {
                 _animator.Play("Flamethrower End");
                 _animator.fireEvents = false;

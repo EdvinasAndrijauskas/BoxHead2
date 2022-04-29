@@ -19,11 +19,16 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
 
     float _timeToFire = 0f;
     Weapon _currentWeapon;
-    private List<Weapon> weapons = WeaponLibrary.Weapons;
+    private readonly List<Weapon> _weapons = WeaponLibrary.Weapons;
     int _currentWeaponIndex = 0;
     public UnityEvent<float> reloading;
     private float _currentDelay = 1f;
     private bool _canShoot = true;
+    private static readonly int Shoot = Animator.StringToHash("Shoot");
+
+    
+    private Coroutine reloadCoroutine;
+
     private void Start()
     {
         _currentWeapon = FindWeaponById(WeaponId.Pistol.ToString());
@@ -37,71 +42,33 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         {
             if (Input.GetButton("Shoot") && Time.time >= _timeToFire)
             {
-                int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
-
-                if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
-                {
-
-                    if (_currentWeapon.currentMagazineAmmo == 0)
-                    {
-                        StartCoroutine(_currentWeapon.Reload());
-                    }
-                    else
-                    {
-                        if (_canShoot) _currentDelay = _currentWeapon.reloadTime;
-                        _timeToFire = Time.time + 1f / _currentWeapon.fireRate;
-                        FindWeaponShooting(_currentWeapon);
-                        muzzleFlash.SetTrigger("Shoot");
-                    }
-                }
-
+                StartShooting();
             }
         }
         else
         {
             if (Input.GetButtonDown("Shoot") && Time.time >= _timeToFire)
             {
-                if (!_canShoot)
-                {
-                    Invoke("RedBarBlink",0f);
-                    Invoke("RemoveBlink",0.1f);
-
-                }
-                int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
-
-                if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
-                {
-
-                    if (_currentWeapon.currentMagazineAmmo == 0)
-                    {
-                        StartCoroutine(_currentWeapon.Reload());
-                    }
-                    else
-                    {
-                        if (_canShoot) _currentDelay = _currentWeapon.reloadTime;
-                        _timeToFire = Time.time + 1f / _currentWeapon.fireRate;
-                        FindWeaponShooting(_currentWeapon);
-                        muzzleFlash.SetTrigger("Shoot");
-                    }
-                }
-
+                StartShooting();
             }
         }
-
-
-        string backup =  _currentWeapon.weaponId == WeaponId.Pistol.ToString()  ?   "∞"  :  _currentWeapon.remainingBackupAmmo.ToString() ;
-        currentAmmo.text =  _currentWeapon.currentMagazineAmmo + "/";
-        backupAmmo.fontSize = backup.Equals("∞") ? 60 : 25;
-        backupAmmo.text = backup;
-        weaponName.text = _currentWeapon.weaponId.ToString();
         
+        UpdateUI();
+
         //next gun
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if (_currentWeaponIndex < weapons.Count - 1)
+            if (_currentWeapon.isRealoding)
+            {
+                StopCoroutine(reloadCoroutine);
+                _canShoot = true;
+                _currentWeapon.isRealoding = false;
+                reloading?.Invoke(1 );
+            }
+            if (_currentWeaponIndex < _weapons.Count - 1)
             {
                 _currentWeaponIndex += 1;
-                _currentWeapon = weapons[_currentWeaponIndex];
+                _currentWeapon = _weapons[_currentWeaponIndex];
                 GameObject.Find("Canvas/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
 
             }
@@ -110,10 +77,18 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //previous gun
         if(Input.GetKeyDown(KeyCode.Q))
         {
+            if (_currentWeapon.isRealoding)
+            {            
+                StopCoroutine(reloadCoroutine);
+                _canShoot = true;
+                _currentWeapon.isRealoding = false;
+                reloading?.Invoke(1 );
+            }
+            
             if (_currentWeaponIndex > 0)
             {
                 _currentWeaponIndex -= 1;
-                _currentWeapon = weapons[_currentWeaponIndex];
+                _currentWeapon = _weapons[_currentWeaponIndex];
                 GameObject.Find("Canvas/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
             }
         }
@@ -121,7 +96,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //reload
         if (Input.GetKeyDown(KeyCode.R))
         { 
-            StartCoroutine(_currentWeapon.Reload());
+            reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
         }
 
         if (_currentWeapon.isRealoding)
@@ -138,20 +113,58 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             }
         }
     }
-    
-    private void RedBarBlink()
+
+    private void UpdateUI()
+    {
+        string backup = _currentWeapon.weaponId == WeaponId.Pistol.ToString()
+            ? "∞"
+            : _currentWeapon.remainingBackupAmmo.ToString();
+        currentAmmo.text = _currentWeapon.currentMagazineAmmo + "/";
+        backupAmmo.fontSize = backup.Equals("∞") ? 60 : 25;
+        backupAmmo.text = backup;
+        weaponName.text = _currentWeapon.weaponId;
+    }
+
+    private void StartShooting()
+    {
+        if (!_canShoot)
+        {
+            Invoke(nameof(NoAmmoBlink), 0f);
+            Invoke(nameof(RemoveAmmoBlink), 0.1f);
+        }
+
+        int totalRemainingAmmo = _currentWeapon.TotalRemainingAmmo();
+
+        if (totalRemainingAmmo != 0 && !_currentWeapon.isRealoding)
+        {
+            if (_currentWeapon.currentMagazineAmmo == 0)
+            {
+                reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
+            }
+            else
+            {
+                if (_canShoot) _currentDelay = _currentWeapon.reloadTime;
+                _timeToFire = Time.time + 1f / _currentWeapon.fireRate;
+                FindWeaponShooting(_currentWeapon);
+                muzzleFlash.SetTrigger(Shoot);
+            }
+        }
+        
+    }
+
+    private void NoAmmoBlink()
     {
         GameObject.FindGameObjectWithTag("BulletBar").GetComponent<Image>().color = Color.red;
     }
     
-    private void RemoveBlink()
+    private void RemoveAmmoBlink()
     {
         GameObject.FindGameObjectWithTag("BulletBar").GetComponent<Image>().color = Color.white;
     }
     
     Weapon FindWeaponById(String weaponId)
     {
-        return weapons.Find(weapon => weapon.weaponId == weaponId);
+        return _weapons.Find(weapon => weapon.weaponId == weaponId);
     }
     
     GameObject FindProjectile(String name)

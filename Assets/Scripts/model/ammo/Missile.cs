@@ -6,7 +6,7 @@ namespace model.ammo
     {
         public GameObject explosion;
         [SerializeField] private float ammoDamage;
-        private float _explosionRadius = 25;
+        private float _explosionRadius = 20;
 
         private void Update()
         {
@@ -14,9 +14,12 @@ namespace model.ammo
         }
 
         private void OnCollisionEnter2D(Collision2D col)
-        { 
-            Destroy(gameObject);
-            OnDestroy();
+        {
+            if (!col.collider.tag.Equals("Soldier"))
+            {
+                Destroy(gameObject);
+                OnDestroy();
+            }
         }
     
         private void OnDestroy()
