@@ -123,15 +123,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
-========
+--- !u!114 &142078622 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7603419935383931400, guid: c0deab870ef3c4f4394975a44fff3cd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 250380933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &207756428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4848648633230701670, guid: a8248ac4649e77941a42df95dbaeabb8,
     type: 3}
   m_PrefabInstance: {fileID: 2127865062}
   m_PrefabAsset: {fileID: 0}
->>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
 --- !u!1 &221096406
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +243,142 @@ Transform:
   m_Father: {fileID: 1654504804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &250380933
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7603419935704316749, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_Name
+      value: TextWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631473, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603419936461631485, guid: c0deab870ef3c4f4394975a44fff3cd1,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelInformation
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0deab870ef3c4f4394975a44fff3cd1, type: 3}
+--- !u!114 &683325240 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7603419935868209261, guid: c0deab870ef3c4f4394975a44fff3cd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 250380933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &707734931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,26 +640,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
-<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
---- !u!114 &874714446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8187660902016723825, guid: 24f6d9d370e4b04408751d3bcabee379,
-    type: 3}
-  m_PrefabInstance: {fileID: 7313517725213964934}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874714441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc17e7158f0039d4c9c410897a1cb24a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 1654504804}
-  bulletPrefab: {fileID: 3388273069021624560, guid: bfdbaae72f568554a936f389726c8892,
-    type: 3}
-  bulletForce: 20
-========
->>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
 --- !u!114 &874714447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,8 +742,6 @@ MonoBehaviour:
   bulletForce: 50
   fireRate: 5
   muzzleFlash: {fileID: 221096407}
-<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
-========
 --- !u!1001 &978491686
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -688,7 +811,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8248ac4649e77941a42df95dbaeabb8, type: 3}
->>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
+--- !u!1 &1103631078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7603419936461631485, guid: c0deab870ef3c4f4394975a44fff3cd1,
+    type: 3}
+  m_PrefabInstance: {fileID: 250380933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1160665346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,9 +1542,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
+      propertyPath: levelCounter
+      value: 
+      objectReference: {fileID: 683325240}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
       propertyPath: waveCountdown
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: countDownCanvas
+      value: 
+      objectReference: {fileID: 1103631078}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
       propertyPath: timeBetweenWaves
@@ -1429,8 +1567,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
+      propertyPath: waveCountDownText
+      value: 
+      objectReference: {fileID: 142078622}
+    - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
       propertyPath: enemies.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
@@ -1442,12 +1585,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemies.Array.data[1]
       value: 
-<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
-      objectReference: {fileID: 8662701788299468425, guid: 135d5cff7b1e5164ab9365242fb83d7b,
-        type: 3}
-========
       objectReference: {fileID: 0}
->>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
       propertyPath: spawnPoints.Array.size
@@ -1752,9 +1890,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-<<<<<<<< HEAD:Assets/Scenes/EdvinasScene 1.unity
-    m_RemovedComponents: []
-========
     - target: {fileID: 8187660902016723827, guid: 24f6d9d370e4b04408751d3bcabee379,
         type: 3}
       propertyPath: m_BodyType
@@ -1772,5 +1907,4 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
->>>>>>>> 35ea7ab9fb101b354b8ff3cf9675ed791fa3d4bb:Assets/Scenes/EdvinasScene-1.unity
   m_SourcePrefab: {fileID: 100100000, guid: 24f6d9d370e4b04408751d3bcabee379, type: 3}
