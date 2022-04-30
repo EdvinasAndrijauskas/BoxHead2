@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IHealthSystem
 {
-    int Health { get; set; }
-    int CurrentHealth { get; set; }
-    void Damage(int damage);
+    float Health { get; set; }
+    float CurrentHealth { get; set; }
+    void Damage(float damage);
 }

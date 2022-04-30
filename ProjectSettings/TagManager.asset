@@ -22,6 +22,11 @@ TagManager:
   - HealthBar
   - Wizard
   - Zombie
+  - Missile
+  - FirePoint
+  - BulletBar
+  - Flame
+  - FlameFirePoint
   layers:
   - Default
   - TransparentFX
@@ -32,8 +37,8 @@ TagManager:
   - 
   - 
   - Enemy
-  - 
-  - 
+  - Explosion
+  - PostProcessing
   - 
   - 
   - 
@@ -58,4 +63,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Explosion
+    uniqueID: 2228896739
     locked: 0
