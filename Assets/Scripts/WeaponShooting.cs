@@ -10,14 +10,14 @@ using UnityEngine.UI;
 
 public class WeaponShooting : MonoBehaviour, IWeaponShooting
 {    
-    public Transform firePoint; 
-    public List<GameObject> projectile;
-    public Animator muzzleFlash;
-    public Text currentAmmo;
-    public Text backupAmmo;
-    public Text weaponName;
-    public UnityEvent<float> reloading;
-
+    [SerializeField] private Transform firePoint; 
+    [SerializeField] private List<GameObject> projectile;
+    [SerializeField] private Animator muzzleFlash;
+    [SerializeField] private Text currentAmmo;
+    [SerializeField] private Text backupAmmo;
+    [SerializeField] private Text weaponName;
+    [SerializeField] private UnityEvent<float> reloading;
+    
     private float _timeToFire = 0f;
     private Weapon _currentWeapon;
     private readonly List<Weapon> _weapons = WeaponLibrary.Weapons;
@@ -63,12 +63,19 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
                 _currentWeapon.isRealoding = false;
                 reloading?.Invoke(1 );
             }
-            if (_currentWeaponIndex < _weapons.Count - 1)
+
+            // Check if weapon is locked
+            int nextWeaponIndex = _currentWeaponIndex;
+            if (nextWeaponIndex + 1 < _weapons.Count && !_weapons[++nextWeaponIndex].isLocked)
             {
-                _currentWeaponIndex += 1;
-                _currentWeapon = _weapons[_currentWeaponIndex];
-                GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
+                if (_currentWeaponIndex < _weapons.Count - 1) 
+                {
+                    _currentWeaponIndex += 1;
+                    _currentWeapon = _weapons[_currentWeaponIndex];
+                    GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
+                }
             }
+            
         }
         
         //previous gun
@@ -81,13 +88,15 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
                 _currentWeapon.isRealoding = false;
                 reloading?.Invoke(1 );
             }
-            
+
+           
             if (_currentWeaponIndex > 0)
             {
                 _currentWeaponIndex -= 1;
                 _currentWeapon = _weapons[_currentWeaponIndex];
                 GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
             }
+              
         }
 
         //reload
@@ -202,7 +211,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
         else if (weaponId == WeaponId.Flamethrower.ToString())
         {
-            FlamethrowerShooting();
+            FlamethrowerShooting(weapon.ammoType);
         }
         else if (weaponId == WeaponId.Railgun.ToString())
         {
@@ -235,9 +244,9 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
     }
 
-    public void FlamethrowerShooting()
+    public void FlamethrowerShooting(String ammo)
     {
-        Instantiate(FindProjectile("Flame"), firePoint.position, firePoint.rotation);
+        Instantiate(FindProjectile(ammo), firePoint.position, firePoint.rotation);
     }
     
     public void LaserShooting(string ammo)

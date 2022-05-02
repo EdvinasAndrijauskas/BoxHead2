@@ -16,9 +16,11 @@ namespace model
         public float reloadTime { get; set; }
         public bool isRealoding { get; set; }
         public string ammoType { get; set; }
+        public bool isLocked { get; set; }
+        public int unlockLevel { get; set; }
         
         
-        public Weapon(string weaponId, int magazineCapacity,float fireRate, float reloadTime, string ammoType, float bulletForce = -1, int maxBackupAmmo = -1)
+        public Weapon(string weaponId, int magazineCapacity,float fireRate, float reloadTime, string ammoType,int unlockLevel, float bulletForce = -1, int maxBackupAmmo = -1)
         {
             this.weaponId = weaponId;
             this.maxBackupAmmo = maxBackupAmmo;
@@ -27,10 +29,12 @@ namespace model
             this.fireRate = fireRate;
             this.reloadTime = reloadTime;
             this.ammoType = ammoType;
-            
+            this.unlockLevel = unlockLevel;
+
             currentMagazineAmmo = magazineCapacity;
             remainingBackupAmmo = maxBackupAmmo;
             isRealoding = false;
+            isLocked = weaponId != WeaponId.Pistol.ToString();
         }
 
         public void Shoot()
