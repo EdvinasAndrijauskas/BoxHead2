@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using data;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -21,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject countDownCanvas;
     [SerializeField] private Text waveCountDownText;
     [SerializeField] private Text levelCounter;
+    [SerializeField] private GameObject supplyBox;
 
     private int  _waveNumber = 1;
     private SpawnState _state = SpawnState.Counting;
@@ -43,6 +45,7 @@ public class EnemySpawner : MonoBehaviour
             if (!EnemyIsAlive())
             {            
                 WaveCompleted();
+            
             }
             else
             {
@@ -69,6 +72,9 @@ public class EnemySpawner : MonoBehaviour
         _state = SpawnState.Counting;
         waveCountdown = timeBetweenWaves;
         countDownCanvas.SetActive(true);
+
+        Vector3 position = new Vector3(Random.Range(-10.0F, 10.0F), 1, Random.Range(-10.0F, 10.0F));
+        Instantiate (supplyBox, position, Quaternion.identity);
     }
 
     private bool EnemyIsAlive()
@@ -85,6 +91,7 @@ public class EnemySpawner : MonoBehaviour
         _state = SpawnState.Spawning;
         var howManyEnemiesToSpawn = 6 + _waveNumber * _waveNumber/2;
       
+        /*
         for (int i = 0; i < howManyEnemiesToSpawn ; i++)
         {
             var spawningEnemy = Random.value <= 0.15 ? wizard : zombie;
@@ -98,7 +105,9 @@ public class EnemySpawner : MonoBehaviour
             }
             SpawnAnEnemy(spawningEnemy);
             yield return new WaitForSeconds(0.5f);
-        }
+        }*/
+        yield return new WaitForSeconds(0.5f);
+
         _waveNumber++;
         levelCounter.text = _waveNumber.ToString();
         _state = SpawnState.Waiting;

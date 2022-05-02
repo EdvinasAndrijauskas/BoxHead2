@@ -4,7 +4,7 @@
     {
         void DirectShooting(string ammo);
         void SpreadShooting(string ammo, float numberOfProjectiles, float spreadAngle);
-        void FlamethrowerShooting();
+        void FlamethrowerShooting(string ammo);
         void LaserShooting(string ammo);
     }
 }
