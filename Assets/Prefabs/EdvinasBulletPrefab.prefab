@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EdvinasBulletPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5991586403301259665, guid: bdc19c475cdef9f46bea0191b4d6edde,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2395541780832185390, guid: bdc19c475cdef9f46bea0191b4d6edde, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bdc19c475cdef9f46bea0191b4d6edde, type: 3}

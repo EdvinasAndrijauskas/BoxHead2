@@ -26,9 +26,8 @@ public class EnemySpawner : MonoBehaviour
     private SpawnState _state = SpawnState.Counting;
     private float _searchCountDown = 1f;
     private double _initialWizardPercentageChance = 0.15;
-
+    private double _newPercentageValueForSpawningWizard = 0.0;
     
-
     private void Start()
     {
         if (spawnPoints.Length == 0)
@@ -85,14 +84,17 @@ public class EnemySpawner : MonoBehaviour
     {
         _state = SpawnState.Spawning;
         var howManyEnemiesToSpawn = 6 + _waveNumber * _waveNumber/2;
-       
       
         for (int i = 0; i < howManyEnemiesToSpawn ; i++)
         {
             var spawningEnemy = Random.value <= 0.15 ? wizard : zombie;
-            if (_waveNumber % 5 == 0)
+            if (_newPercentageValueForSpawningWizard <= 0.4)
             {
-                spawningEnemy = Random.value <= _initialWizardPercentageChance + 0.05 ? wizard : zombie;
+                if (_waveNumber % 5 == 0)
+                {
+                    spawningEnemy = Random.value <= _initialWizardPercentageChance + 0.05 ? wizard : zombie;
+                    _newPercentageValueForSpawningWizard = _initialWizardPercentageChance + 0.05;
+                }
             }
             SpawnAnEnemy(spawningEnemy);
             yield return new WaitForSeconds(0.5f);

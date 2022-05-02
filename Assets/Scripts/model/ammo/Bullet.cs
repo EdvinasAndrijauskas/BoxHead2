@@ -40,7 +40,7 @@ namespace model.ammo
                     Destroy(col.gameObject);
                 }
             }
-
+            
             if (!col.gameObject.CompareTag("Bullet"))
             {
                 Destroy(gameObject);

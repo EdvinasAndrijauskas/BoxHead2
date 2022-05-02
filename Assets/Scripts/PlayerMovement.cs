@@ -11,11 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private Animator anim;
+    private Rigidbody2D _rigidbody2D;
    
     private void Start()
     {
         anim = GetComponent<Animator>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
     }
+    
 
     // Update is called once per frame
     private void Update()
@@ -33,8 +36,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward,movementDirection);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,rotationSpeed * Time.deltaTime);
+            _rigidbody2D.velocity = Vector2.zero;
+            _rigidbody2D.angularVelocity = 0;
         }
-        
     }
     
     private void FixedUpdate()
