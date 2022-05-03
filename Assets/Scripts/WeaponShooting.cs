@@ -7,6 +7,7 @@ using model.ammo;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class WeaponShooting : MonoBehaviour, IWeaponShooting
 {    

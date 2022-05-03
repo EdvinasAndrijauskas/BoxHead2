@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using model;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace data
 {
@@ -15,7 +18,7 @@ namespace data
         GrenadeLauncher,
     }
 
-    public static class WeaponLibrary
+    public static class WeaponLibrary 
     {
         
         
@@ -33,10 +36,12 @@ namespace data
         
         public static void UnlockWeapon(int level)
         {
-            for (int i =   1; i < Weapons.Count; i++)
+            for (int i = 1; i < Weapons.Count; i++)
             {
                 if (Weapons[i].unlockLevel == level)
                 {
+                    GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().EnabledText(Weapons[i].weaponId);
+                    
                     Debug.Log(Weapons[i].weaponId + " UNLOCKED");
                     Weapons[i].isLocked = false;
                     return;

@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class WeaponInformation : MonoBehaviour
 {
     
-    public Sprite pistol;
-    public Sprite shotgun;
-    public Sprite rifle;
-    public Sprite javelin;
-    public Sprite flamethrower;
-    public Sprite grenadeLauncher;
-    public Sprite railgun;
-
+    [SerializeField] private Sprite pistol;
+    [SerializeField] private Sprite shotgun;
+    [SerializeField] private Sprite rifle;
+    [SerializeField] private Sprite javelin;
+    [SerializeField] private Sprite flamethrower;
+    [SerializeField] private Sprite grenadeLauncher;
+    [SerializeField] private Sprite railgun;
+    [SerializeField] private Text unlockText;
+    
     public void UpdateWeaponImage(string weaponId)
     {
         if (weaponId == WeaponId.Pistol.ToString())
@@ -50,4 +51,17 @@ public class WeaponInformation : MonoBehaviour
         }
     }
     
+
+    public void EnabledText(string name)
+    {
+        unlockText.enabled = true;
+        unlockText.text = name + " Unlocked";
+        
+        Invoke(nameof(DisableText),3f);
+    }
+
+    private void DisableText()
+    {
+        unlockText.enabled = false;
+    }
 }

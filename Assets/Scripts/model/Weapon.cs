@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using data;
 using UnityEngine;
 
@@ -84,6 +85,14 @@ namespace model
         {
             if (weaponId == WeaponId.Pistol.ToString()) return -1;
             return remainingBackupAmmo + currentMagazineAmmo;
+        }
+
+        public void RefillAmmo()
+        {
+            
+                currentMagazineAmmo = magazineCapacity;
+                remainingBackupAmmo = maxBackupAmmo;
+            
         }
     }
 }

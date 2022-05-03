@@ -73,12 +73,8 @@ public class EnemySpawner : MonoBehaviour
         waveCountdown = timeBetweenWaves;
         countDownCanvas.SetActive(true);
         
-        //TODO: static value for max unlock weapon
-        if (_waveNumber <= 7)
-        {
-            WeaponLibrary.UnlockWeapon(_waveNumber);
-        }
-        
+     
+        WeaponLibrary.UnlockWeapon(_waveNumber);
         Vector3 position = new Vector3(Random.Range(-10.0F, 10.0F), 1, Random.Range(-10.0F, 10.0F));
         Instantiate (supplyBox, position, Quaternion.identity);
     }
