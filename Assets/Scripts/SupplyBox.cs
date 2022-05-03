@@ -14,29 +14,30 @@ public class SupplyBox : MonoBehaviour
         {
             if (!weapons[i].isLocked)
             {
-                unlockedWeapons.Add(weapons[i]);
+                if (weapons[i].AmmoUsed())
+                {
+                    unlockedWeapons.Add(weapons[i]);
+                }
+                else
+                {
+                    Debug.Log("Ammo is full");
+                }
             }
         }
         
         var random = new Random();
         int index = random.Next(unlockedWeapons.Count);
-        Debug.Log(unlockedWeapons[index].weaponId);
-
-        if (unlockedWeapons[index].AmmoUsed())
+        if (index == 0)
         {
-            unlockedWeapons[index].RefillAmmo();
+            Debug.Log("All Ammo is full");
         }
         else
         {
-            RefillHealth();
+            Debug.Log(unlockedWeapons[index].weaponId);
+            unlockedWeapons[index].RefillAmmo();
         }
     }
 
-    private void RefillHealth()
-    {
-        
-    }
-    
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag.Equals("Soldier"))
