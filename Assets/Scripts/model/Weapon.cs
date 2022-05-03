@@ -89,10 +89,18 @@ namespace model
 
         public void RefillAmmo()
         {
+            currentMagazineAmmo = magazineCapacity;
+            remainingBackupAmmo = maxBackupAmmo;
+        }
+
+        public bool AmmoUsed()
+        {
+            if (currentMagazineAmmo == magazineCapacity)
+            {
+                return false;
+            }
             
-                currentMagazineAmmo = magazineCapacity;
-                remainingBackupAmmo = maxBackupAmmo;
-            
+            return true;
         }
     }
 }
