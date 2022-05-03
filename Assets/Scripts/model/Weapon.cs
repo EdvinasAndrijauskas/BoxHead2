@@ -95,7 +95,7 @@ namespace model
 
         public bool AmmoUsed()
         {
-            if (currentMagazineAmmo == magazineCapacity)
+            if (currentMagazineAmmo == magazineCapacity && remainingBackupAmmo == maxBackupAmmo)
             {
                 return false;
             }

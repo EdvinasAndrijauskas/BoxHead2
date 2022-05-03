@@ -27,7 +27,7 @@ public class SupplyBox : MonoBehaviour
         
         var random = new Random();
         int index = random.Next(unlockedWeapons.Count);
-        if (index == 0)
+        if (unlockedWeapons.Count == 0)
         {
             Debug.Log("All Ammo is full");
         }
