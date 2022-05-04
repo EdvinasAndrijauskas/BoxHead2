@@ -1,10 +1,17 @@
+using System;
+using SFX;
 using UnityEngine;
 
 namespace model.ammo
 {
-    public class Bullet : MonoBehaviour, IAmmoDamage
+    public class Bullet : MonoBehaviour, IAmmo
     {
         [SerializeField] private float ammoDamage;
+
+        private void Start()
+        {
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("Bullet");
+        }
 
         private void Update()
         {

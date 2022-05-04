@@ -1,8 +1,9 @@
+using SFX;
 using UnityEngine;
 
 namespace model.ammo
 {
-    public class Grenade : MonoBehaviour, IAmmoDamage
+    public class Grenade : MonoBehaviour, IAmmo
     {
         public GameObject explosion;
         public float timeToExplode;
@@ -39,6 +40,7 @@ namespace model.ammo
         private void Explode()
         {
             GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EMP_Grenade");
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionEffect.transform.position, _explosionRadius);
             foreach (Collider2D collider in colliders)

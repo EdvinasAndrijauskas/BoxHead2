@@ -1,8 +1,9 @@
+using SFX;
 using UnityEngine;
 
 namespace model.ammo
 {
-    public class Flame : MonoBehaviour, IAmmoDamage
+    public class Flame : MonoBehaviour, IAmmo
     {
         [SerializeField] private float ammoDamage;
 
@@ -26,6 +27,9 @@ namespace model.ammo
         {
             _animator = GetComponent<Animator>();
             _firePoint = GameObject.FindGameObjectWithTag("FlameFirePoint").GetComponent<Transform>();
+            
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("Flame");
+
             _rotateFlame = new Vector3(0,0,90 );
             transform.Rotate(_rotateFlame);
 
@@ -49,6 +53,8 @@ namespace model.ammo
 
         public void EndFlame()
         {
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("Flame");
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("FlameEnd");
             _animator.Play("Flamethrower End");
             _animator.fireEvents = false;
             Destroy(gameObject,0.25f);

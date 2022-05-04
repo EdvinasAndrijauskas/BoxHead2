@@ -30,6 +30,8 @@ TagManager:
   - Undefined
   - SupplyBox
   - UnlockedText
+  - WeaponImage
+  - WeaponSound
   layers:
   - Default
   - TransparentFX

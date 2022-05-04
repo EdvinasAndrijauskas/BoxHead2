@@ -7,7 +7,6 @@ using model.ammo;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Random = System.Random;
 
 public class WeaponShooting : MonoBehaviour, IWeaponShooting
 {    
@@ -48,16 +47,16 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             isRealoding();
 
             // Check if weapon is locked
-            int nextWeaponIndex = _currentWeaponIndex;
+            /*int nextWeaponIndex = _currentWeaponIndex;
             if (nextWeaponIndex + 1 < _weapons.Count && !_weapons[++nextWeaponIndex].isLocked)
-            {
+            {*/
                 if (_currentWeaponIndex < _weapons.Count - 1) 
                 {
                     _currentWeaponIndex += 1;
                     _currentWeapon = _weapons[_currentWeaponIndex];
                     GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
                 }
-            }
+            //}
             
         }
         

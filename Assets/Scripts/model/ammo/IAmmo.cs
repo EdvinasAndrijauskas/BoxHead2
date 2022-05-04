@@ -2,7 +2,7 @@
 
 namespace model.ammo
 {
-    public interface IAmmoDamage
+    public interface IAmmo
     {
         void TakeDamage(Collider2D col, float damage);
     }

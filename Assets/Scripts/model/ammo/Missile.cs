@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace model.ammo
 {
-    public class Missile : MonoBehaviour, IAmmoDamage
+    public class Missile : MonoBehaviour, IAmmo
     {
         public GameObject explosion;
         [SerializeField] private float ammoDamage;

@@ -2,7 +2,7 @@
 
 namespace model.ammo
 {
-    public class Laser : MonoBehaviour, IAmmoDamage
+    public class Laser : MonoBehaviour, IAmmo
     {
         private Vector3 _startPosition;
         private Vector2 _endPosition;

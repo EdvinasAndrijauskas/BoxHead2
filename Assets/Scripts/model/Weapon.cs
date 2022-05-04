@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using data;
+using SFX;
 using UnityEngine;
 
 namespace model
@@ -57,6 +58,8 @@ namespace model
                 if (currentMagazineAmmo < magazineCapacity)
                 {
                     isRealoding = true;
+                    //TODO: Reload Sound 
+                    GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play(reloadTime.ToString());
                     yield return new WaitForSeconds(reloadTime);
                 }
           
