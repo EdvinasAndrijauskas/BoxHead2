@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using data;
 using model;
 using UnityEngine;
@@ -18,40 +19,44 @@ public class WeaponInformation : MonoBehaviour
     [SerializeField] private Text backupAmmoText;
     [SerializeField] private Text weaponNameText;
     [SerializeField] private Text unlockText;
-
+    
     public void UpdateWeaponImage(string weaponId)
     {
+
+        Sprite weaponImage = pistol;
         if (weaponId == WeaponId.Pistol.ToString())
         {
-            GetComponent<Image>().sprite = pistol;
+            weaponImage = pistol;
         }
         
         if (weaponId == WeaponId.Rifle.ToString())
         {
-            GetComponent<Image>().sprite = rifle;
+            weaponImage = rifle;
         }
         
         if (weaponId == WeaponId.Shotgun.ToString())
         {
-            GetComponent<Image>().sprite = shotgun;
+            weaponImage = shotgun;
         }
         
         if (weaponId == WeaponId.Javelin.ToString())
         {
-            GetComponent<Image>().sprite = javelin;
+            weaponImage =  javelin;
         }
         if (weaponId == WeaponId.Flamethrower.ToString())
         {
-            GetComponent<Image>().sprite = flamethrower;
+            weaponImage = flamethrower;
         }
         if (weaponId == WeaponId.GrenadeLauncher.ToString())
         {
-            GetComponent<Image>().sprite = grenadeLauncher;
+            weaponImage = grenadeLauncher;
         }
         if (weaponId == WeaponId.Railgun.ToString())
         {
-            GetComponent<Image>().sprite = railgun;
+            weaponImage = railgun;
         }
+
+        GameObject.FindGameObjectWithTag("WeaponImage").GetComponent<Image>().sprite = weaponImage;
     }
     
     public void UpdateWeaponAmmo(Weapon weapon)

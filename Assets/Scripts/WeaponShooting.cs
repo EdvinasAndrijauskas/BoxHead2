@@ -55,7 +55,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
                 {
                     _currentWeaponIndex += 1;
                     _currentWeapon = _weapons[_currentWeaponIndex];
-                    GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
+                    GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
                 }
             }
             
@@ -70,7 +70,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             {
                 _currentWeaponIndex -= 1;
                 _currentWeapon = _weapons[_currentWeaponIndex];
-                GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
+                GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
             }
         }
 
@@ -108,7 +108,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
 
     private void UpdateUI(Weapon weapon)
     {
-        GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponAmmo(weapon);
+        GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponAmmo(weapon);
     }
 
     private void StartShooting()

@@ -38,7 +38,7 @@ namespace data
             {
                 if (Weapons[i].unlockLevel == level)
                 {
-                    GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().EnabledText(Weapons[i].weaponId);
+                    GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().EnabledText(Weapons[i].weaponId);
                     
                     Debug.Log(Weapons[i].weaponId + " UNLOCKED");
                     Weapons[i].isLocked = false;
