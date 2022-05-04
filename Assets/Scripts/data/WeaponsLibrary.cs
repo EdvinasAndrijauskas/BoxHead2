@@ -20,8 +20,6 @@ namespace data
 
     public static class WeaponLibrary 
     {
-        
-        
         public static List<Weapon> Weapons = new List<Weapon>
         {
             new Weapon(WeaponId.Pistol.ToString(),7,  5f,  1f,Ammo.Bullet.ToString(),1,50f),

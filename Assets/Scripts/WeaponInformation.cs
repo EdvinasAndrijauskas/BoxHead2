@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using data;
+using model;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +14,11 @@ public class WeaponInformation : MonoBehaviour
     [SerializeField] private Sprite flamethrower;
     [SerializeField] private Sprite grenadeLauncher;
     [SerializeField] private Sprite railgun;
+    [SerializeField] private Text currentAmmoText;
+    [SerializeField] private Text backupAmmoText;
+    [SerializeField] private Text weaponNameText;
     [SerializeField] private Text unlockText;
-    
+
     public void UpdateWeaponImage(string weaponId)
     {
         if (weaponId == WeaponId.Pistol.ToString())
@@ -51,11 +54,19 @@ public class WeaponInformation : MonoBehaviour
         }
     }
     
+    public void UpdateWeaponAmmo(Weapon weapon)
+    {
+        string backup = weapon.weaponId == WeaponId.Pistol.ToString() ? "∞" : weapon.remainingBackupAmmo.ToString();
+        currentAmmoText.text = weapon.currentMagazineAmmo + "/";
+        backupAmmoText.fontSize = backup.Equals("∞") ? 60 : 25;
+        backupAmmoText.text = backup;
+        weaponNameText.text = weapon.weaponId;
+    }
 
-    public void EnabledText(string name)
+    public void EnabledText(string weaponName)
     {
         unlockText.enabled = true;
-        unlockText.text = name + " Unlocked";
+        unlockText.text = weaponName + " Unlocked";
         
         Invoke(nameof(DisableText),3f);
     }

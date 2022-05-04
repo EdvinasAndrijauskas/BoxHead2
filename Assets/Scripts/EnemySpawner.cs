@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Text waveCountDownText;
     [SerializeField] private Text levelCounter;
     [SerializeField] private GameObject supplyBox;
+    [SerializeField] private GameObject supplyBoxSpawnArea;
 
     private int  _waveNumber = 1;
     private SpawnState _state = SpawnState.Counting;
@@ -75,7 +76,18 @@ public class EnemySpawner : MonoBehaviour
         
      
         WeaponLibrary.UnlockWeapon(_waveNumber);
-        Vector3 position = new Vector3(Random.Range(-10.0F, 10.0F), 1, Random.Range(-10.0F, 10.0F));
+        SpawnSupplyBox();
+    }
+
+    private void SpawnSupplyBox()
+    {
+        MeshCollider meshCollider = supplyBoxSpawnArea.GetComponent<MeshCollider>();
+
+        var bounds = meshCollider.bounds;
+        float screenX = Random.Range(bounds.min.x, bounds.max.x);
+        float screenY = Random.Range(bounds.min.y, bounds.max.y);
+        
+        Vector3 position = new Vector3(screenX,screenY);
         Instantiate (supplyBox, position, Quaternion.identity);
     }
 

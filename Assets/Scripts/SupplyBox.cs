@@ -7,7 +7,9 @@ using Random = System.Random;
 
 public class SupplyBox : MonoBehaviour
 {
-    private void RefillAmmo(List<Weapon> weapons)
+    [SerializeField] private GameObject supplyBoxGameObject;
+
+    private string RefillAmmo(List<Weapon> weapons)
     {
         List<Weapon> unlockedWeapons = new List<Weapon>();
         for (int i = 1; i < weapons.Count; i++)
@@ -30,19 +32,26 @@ public class SupplyBox : MonoBehaviour
         if (unlockedWeapons.Count == 0)
         {
             Debug.Log("All Ammo is full");
+            return "All Ammo is full";
         }
         else
         {
             Debug.Log(unlockedWeapons[index].weaponId);
             unlockedWeapons[index].RefillAmmo();
+            return unlockedWeapons[index].weaponId;
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag.Equals("Soldier"))
+        if (col.tag.Equals("Soldier"))    
         {
-            RefillAmmo(WeaponLibrary.Weapons);
+            GameObject supplyBox = Instantiate(supplyBoxGameObject,transform.position, Quaternion.identity);
+            
+            SupplyBoxText supplyBoxText = supplyBox.GetComponent<SupplyBoxText>();
+            supplyBoxText.Setup(RefillAmmo(WeaponLibrary.Weapons));
+            
             Destroy(gameObject);
         }
     }

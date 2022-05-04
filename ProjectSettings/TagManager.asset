@@ -29,6 +29,7 @@ TagManager:
   - FlameFirePoint
   - Undefined
   - SupplyBox
+  - UnlockedText
   layers:
   - Default
   - TransparentFX

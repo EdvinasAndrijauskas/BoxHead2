@@ -14,9 +14,6 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
     [SerializeField] private Transform firePoint; 
     [SerializeField] private List<GameObject> projectile;
     [SerializeField] private Animator muzzleFlash;
-    [SerializeField] private Text currentAmmo;
-    [SerializeField] private Text backupAmmo;
-    [SerializeField] private Text weaponName;
     [SerializeField] private UnityEvent<float> reloading;
     
     private float _timeToFire = 0f;
@@ -37,33 +34,18 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
 
     private void Update()
     {
-        if (_currentWeapon.weaponId != WeaponId.Pistol.ToString())
+        UpdateUI(_currentWeapon);
+        bool input =_currentWeapon.weaponId != WeaponId.Pistol.ToString()  ? Input.GetButton("Shoot") : Input.GetButtonDown("Shoot");
+      
+        if (input && Time.time >= _timeToFire)
         {
-            if (Input.GetButton("Shoot") && Time.time >= _timeToFire)
-            {
-                StartShooting();
-            }
-        }
-        else
-        {
-            if (Input.GetButtonDown("Shoot") && Time.time >= _timeToFire)
-            {
-                StartShooting();
-            }
+            StartShooting();
         }
         
-        UpdateUI();
-
         //next gun
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if (_currentWeapon.isRealoding)
-            {
-                StopCoroutine(_reloadCoroutine);
-                _canShoot = true;
-                _currentWeapon.isRealoding = false;
-                reloading?.Invoke(1 );
-            }
+            isRealoding();
 
             // Check if weapon is locked
             int nextWeaponIndex = _currentWeaponIndex;
@@ -82,22 +64,14 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //previous gun
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            if (_currentWeapon.isRealoding)
-            {            
-                StopCoroutine(_reloadCoroutine);
-                _canShoot = true;
-                _currentWeapon.isRealoding = false;
-                reloading?.Invoke(1 );
-            }
-
-           
+            isRealoding();
+            
             if (_currentWeaponIndex > 0)
             {
                 _currentWeaponIndex -= 1;
                 _currentWeapon = _weapons[_currentWeaponIndex];
                 GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
             }
-              
         }
 
         //reload
@@ -105,7 +79,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         { 
             _reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
         }
-
+        
         if (_currentWeapon.isRealoding)
         {
             _canShoot = false;
@@ -121,15 +95,20 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
     }
 
-    private void UpdateUI()
+    private void isRealoding()
     {
-        string backup = _currentWeapon.weaponId == WeaponId.Pistol.ToString()
-            ? "∞"
-            : _currentWeapon.remainingBackupAmmo.ToString();
-        currentAmmo.text = _currentWeapon.currentMagazineAmmo + "/";
-        backupAmmo.fontSize = backup.Equals("∞") ? 60 : 25;
-        backupAmmo.text = backup;
-        weaponName.text = _currentWeapon.weaponId;
+        if (_currentWeapon.isRealoding)
+        {
+            StopCoroutine(_reloadCoroutine);
+            _canShoot = true;
+            _currentWeapon.isRealoding = false;
+            reloading?.Invoke(1);
+        }
+    }
+
+    private void UpdateUI(Weapon weapon)
+    {
+        GameObject.Find("GunInformation/WeaponBar/Image").GetComponent<WeaponInformation>().UpdateWeaponAmmo(weapon);
     }
 
     private void StartShooting()
