@@ -6,7 +6,6 @@ namespace model.ammo
     public class Grenade : MonoBehaviour, IAmmo
     {
         public GameObject explosion;
-        public float timeToExplode;
         private float _countdown;
         private float _explosionRadius = 8;
 
@@ -14,7 +13,7 @@ namespace model.ammo
 
         private void Start()
         {
-            _countdown = timeToExplode;
+            _countdown = Random.Range(1f,2f);
         }
 
         private void Update()
@@ -40,7 +39,7 @@ namespace model.ammo
         private void Explode()
         {
             GameObject explosionEffect = Instantiate(explosion, transform.position, Quaternion.identity);
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EMP_Grenade");
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().PlayOneShot("EMP_Grenade");
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(explosionEffect.transform.position, _explosionRadius);
             foreach (Collider2D collider in colliders)

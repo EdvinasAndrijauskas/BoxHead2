@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SFX;
+using UnityEngine;
 
 namespace model.ammo
 {
@@ -12,6 +13,7 @@ namespace model.ammo
 
         void Start()
         {
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("Laser");
             _startPosition = transform.position;
         }
 

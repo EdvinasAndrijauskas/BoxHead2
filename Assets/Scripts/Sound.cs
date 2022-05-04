@@ -8,5 +8,6 @@ namespace DefaultNamespace
         public AudioClip soundClip;
         [HideInInspector]
         public AudioSource source;
+        public bool loop;
     }
 }

@@ -9,6 +9,11 @@ public class SupplyBox : MonoBehaviour
 {
     [SerializeField] private GameObject supplyBoxGameObject;
 
+    private void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
+    }
+
     private string RefillAmmo(List<Weapon> weapons)
     {
         List<Weapon> unlockedWeapons = new List<Weapon>();

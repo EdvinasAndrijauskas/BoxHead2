@@ -52,6 +52,7 @@ namespace model
                 isRealoding = false;
                 Debug.Log("No Bullets");
                 //TODO: add sound
+                GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EmptyMagazine");
             }
             else
             {

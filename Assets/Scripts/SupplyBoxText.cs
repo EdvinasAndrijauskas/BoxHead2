@@ -15,6 +15,8 @@ public class SupplyBoxText : MonoBehaviour
     private void Awake()
     {
         _textMeshPro = transform.GetComponent<TextMeshPro>();
+        gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
+
     }
 
     public void Setup(string supplyText)

@@ -1,3 +1,4 @@
+using SFX;
 using UnityEngine;
 
 namespace model.ammo
@@ -25,6 +26,7 @@ namespace model.ammo
         private void OnDestroy()
         {
             GameObject missileExplosion = Instantiate(explosion, transform.position, Quaternion.identity);
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("Missile");
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(missileExplosion.transform.position, _explosionRadius);
             foreach (Collider2D collider in colliders)

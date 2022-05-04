@@ -4,6 +4,7 @@ using data;
 using DefaultNamespace;
 using model;
 using model.ammo;
+using SFX;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -44,7 +45,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //next gun
         if(Input.GetKeyDown(KeyCode.E))
         {
-            isRealoding();
+            IsRealoding();
 
             // Check if weapon is locked
             /*int nextWeaponIndex = _currentWeaponIndex;
@@ -63,7 +64,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //previous gun
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            isRealoding();
+            IsRealoding();
             
             if (_currentWeaponIndex > 0)
             {
@@ -85,6 +86,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             _currentDelay -= Time.deltaTime;
             reloading?.Invoke(_currentDelay / _currentWeapon.reloadTime );
             
+            StopFlame();
             if (_currentDelay <= 0)
             {
                 _canShoot = true;
@@ -94,7 +96,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
     }
 
-    private void isRealoding()
+    private void IsRealoding()
     {
         if (_currentWeapon.isRealoding)
         {
@@ -125,10 +127,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             if (_currentWeapon.currentMagazineAmmo == 0)
             {
                 _reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
-                if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
-                {
-                    GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>().EndFlame();
-                }
+                StopFlame();
             }
             else
             {
@@ -144,12 +143,24 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
         else
         {
-            if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
-            {
-                GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>().EndFlame();
-            }
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EmptyMagazine");
+
+           StopFlame();
         }
         
+    }
+
+    private void StopFlame()
+    {
+        if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
+        {
+            Flame flame =  GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>();
+            flame.EndFlame();
+            StopCoroutine(flame.PlayFlameSound());
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameStart");
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameMiddle");
+
+        }
     }
 
     private void ReloadingBlink()

@@ -1,3 +1,4 @@
+using System.Collections;
 using SFX;
 using UnityEngine;
 
@@ -27,12 +28,17 @@ namespace model.ammo
         {
             _animator = GetComponent<Animator>();
             _firePoint = GameObject.FindGameObjectWithTag("FlameFirePoint").GetComponent<Transform>();
-            
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("Flame");
 
+            StartCoroutine(PlayFlameSound());
             _rotateFlame = new Vector3(0,0,90 );
             transform.Rotate(_rotateFlame);
-
+        }
+        
+        public IEnumerator PlayFlameSound()
+        {
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().PlayOneShot("FlameStart");
+            yield return new WaitForSeconds(0.5f);
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("FlameMiddle");
         }
     
         private void Update()
@@ -53,8 +59,9 @@ namespace model.ammo
 
         public void EndFlame()
         {
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("Flame");
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("FlameEnd");
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameStart");
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameMiddle");
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().PlayOneShot("FlameEnd");
             _animator.Play("Flamethrower End");
             _animator.fireEvents = false;
             Destroy(gameObject,0.25f);
