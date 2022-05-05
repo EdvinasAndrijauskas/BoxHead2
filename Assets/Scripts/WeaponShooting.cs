@@ -4,10 +4,10 @@ using data;
 using DefaultNamespace;
 using model;
 using model.ammo;
+using SFX;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using Random = System.Random;
 
 public class WeaponShooting : MonoBehaviour, IWeaponShooting
 {    
@@ -45,26 +45,26 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         //next gun
         if(Input.GetKeyDown(KeyCode.E))
         {
-            isRealoding();
+            IsRealoding();
 
             // Check if weapon is locked
-            int nextWeaponIndex = _currentWeaponIndex;
+            /*int nextWeaponIndex = _currentWeaponIndex;
             if (nextWeaponIndex + 1 < _weapons.Count && !_weapons[++nextWeaponIndex].isLocked)
-            {
+            {*/
                 if (_currentWeaponIndex < _weapons.Count - 1) 
                 {
                     _currentWeaponIndex += 1;
                     _currentWeapon = _weapons[_currentWeaponIndex];
                     GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
                 }
-            }
+            //}
             
         }
         
         //previous gun
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            isRealoding();
+            IsRealoding();
             
             if (_currentWeaponIndex > 0)
             {
@@ -86,6 +86,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             _currentDelay -= Time.deltaTime;
             reloading?.Invoke(_currentDelay / _currentWeapon.reloadTime );
             
+            StopFlame();
             if (_currentDelay <= 0)
             {
                 _canShoot = true;
@@ -95,7 +96,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
     }
 
-    private void isRealoding()
+    private void IsRealoding()
     {
         if (_currentWeapon.isRealoding)
         {
@@ -126,10 +127,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             if (_currentWeapon.currentMagazineAmmo == 0)
             {
                 _reloadCoroutine = StartCoroutine(_currentWeapon.Reload());
-                if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
-                {
-                    GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>().EndFlame();
-                }
+                StopFlame();
             }
             else
             {
@@ -145,12 +143,19 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         }
         else
         {
-            if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
-            {
-                GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>().EndFlame();
-            }
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EmptyMagazine");
+            StopFlame();
         }
         
+    }
+
+    private void StopFlame()
+    {
+        if (_currentWeapon.weaponId == WeaponId.Flamethrower.ToString() && GameObject.FindGameObjectWithTag("Flame") != null)
+        {
+            Flame flame =  GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>();
+            flame.EndFlame();
+        }
     }
 
     private void ReloadingBlink()

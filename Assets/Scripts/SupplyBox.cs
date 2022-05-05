@@ -2,12 +2,18 @@ using System;
 using System.Collections.Generic;
 using data;
 using model;
+using SFX;
 using UnityEngine;
 using Random = System.Random;
 
 public class SupplyBox : MonoBehaviour
 {
     [SerializeField] private GameObject supplyBoxGameObject;
+
+    private void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
+    }
 
     private string RefillAmmo(List<Weapon> weapons)
     {
@@ -48,7 +54,8 @@ public class SupplyBox : MonoBehaviour
         if (col.tag.Equals("Soldier"))    
         {
             GameObject supplyBox = Instantiate(supplyBoxGameObject,transform.position, Quaternion.identity);
-            
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("SupplyBox");
+
             SupplyBoxText supplyBoxText = supplyBox.GetComponent<SupplyBoxText>();
             supplyBoxText.Setup(RefillAmmo(WeaponLibrary.Weapons));
             

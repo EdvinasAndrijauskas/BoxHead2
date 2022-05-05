@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using SFX;
+using UnityEngine;
 
 namespace model.ammo
 {
-    public class Laser : MonoBehaviour, IAmmoDamage
+    public class Laser : MonoBehaviour, IAmmo
     {
         private Vector3 _startPosition;
         private Vector2 _endPosition;
@@ -12,6 +13,7 @@ namespace model.ammo
 
         void Start()
         {
+            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("Laser");
             _startPosition = transform.position;
         }
 

@@ -30,6 +30,9 @@ TagManager:
   - Undefined
   - SupplyBox
   - UnlockedText
+  - WeaponSound
+  - WeaponImage
+  - Ignore Raycast
   layers:
   - Default
   - TransparentFX
@@ -43,7 +46,7 @@ TagManager:
   - Explosion
   - PostProcessing
   - IgnoreBullet
-  - 
+  - Ignore Raycast
   - 
   - 
   - 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7686065482360624286}
   - component: {fileID: 3661380484185838342}
   - component: {fileID: 8285696934588683347}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SupplyBox
   m_TagString: SupplyBox
   m_Icon: {fileID: 0}

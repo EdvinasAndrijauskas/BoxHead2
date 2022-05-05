@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using model;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
-using UnityEngine.UI;
-
 namespace data
 {
     enum WeaponId
@@ -24,10 +20,10 @@ namespace data
         {
             new Weapon(WeaponId.Pistol.ToString(),7,  5f,  1f,Ammo.Bullet.ToString(),1,50f),
             new Weapon(WeaponId.Rifle.ToString(),30 , 10f,1.5f,Ammo.Bullet.ToString(),2,50f,60),
-            new Weapon(WeaponId.Shotgun.ToString(),12, 5f,2f, Ammo.Bullet.ToString(),3,75f,24),
-            new Weapon(WeaponId.GrenadeLauncher.ToString(),4, 1f,2.5f,Ammo.EMP_Grenade.ToString(),4,50f,12 ),
-            new Weapon(WeaponId.Javelin.ToString(),1, 1f,1f,Ammo.Missile.ToString(),5,100f ,2),
-            new Weapon(WeaponId.Flamethrower.ToString(),28, 1f,3f,Ammo.Flame.ToString() ,6,maxBackupAmmo: 28),
+            new Weapon(WeaponId.Shotgun.ToString(),12, 5f,1.5f, Ammo.Bullet.ToString(),3,75f,24),
+            new Weapon(WeaponId.GrenadeLauncher.ToString(),4, 1f,1.5f,Ammo.EMP_Grenade.ToString(),4,50f,12 ),
+            new Weapon(WeaponId.Javelin.ToString(),1, 1f,2f,Ammo.Missile.ToString(),5,100f ,2),
+            new Weapon(WeaponId.Flamethrower.ToString(),28, 3f,2f,Ammo.Flame.ToString() ,6,maxBackupAmmo: 28),
             new Weapon(WeaponId.Railgun.ToString(),12, 1f,2f,Ammo.Laser.ToString(),7,maxBackupAmmo: 12 ),
         };
         
