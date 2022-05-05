@@ -61,7 +61,6 @@ namespace model.ammo
         {
             GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameStart");
             GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameMiddle");
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().PlayOneShot("FlameEnd");
             _animator.Play("Flamethrower End");
             _animator.fireEvents = false;
             Destroy(gameObject,0.25f);

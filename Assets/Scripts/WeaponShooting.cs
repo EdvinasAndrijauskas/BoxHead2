@@ -144,8 +144,7 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         else
         {
             GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EmptyMagazine");
-
-           StopFlame();
+            StopFlame();
         }
         
     }
@@ -156,10 +155,6 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
         {
             Flame flame =  GameObject.FindGameObjectWithTag("Flame").GetComponent<Flame>();
             flame.EndFlame();
-            StopCoroutine(flame.PlayFlameSound());
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameStart");
-            GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Stop("FlameMiddle");
-
         }
     }
 
