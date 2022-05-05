@@ -105,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
         _state = SpawnState.Spawning;
         var howManyEnemiesToSpawn = 6 + _waveNumber * _waveNumber/2;
       
-        /*
+        
         for (int i = 0; i < howManyEnemiesToSpawn ; i++)
         {
             var spawningEnemy = Random.value <= 0.15 ? wizard : zombie;
@@ -119,7 +119,8 @@ public class EnemySpawner : MonoBehaviour
             }
             SpawnAnEnemy(spawningEnemy);
             yield return new WaitForSeconds(0.5f);
-        }*/
+        }
+        
         yield return new WaitForSeconds(0.5f);
 
         _waveNumber++;
