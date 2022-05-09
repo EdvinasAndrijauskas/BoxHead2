@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 
@@ -8,6 +9,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     public float Health { get; set; }
     public float CurrentHealth { get; set; }
     [SerializeField] private HealthBar HealthBar;
+    public static bool isDead = false;
 
     // Start is called before the first frame update
     private  void Start()
@@ -17,23 +19,25 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
         HealthBar.SetMaxHealth(Health);
         InvokeRepeating("Heal", 3, 5);
     }
-    
 
     public void Damage(float damage)
     {
         CurrentHealth -= damage;
-        if (CurrentHealth < 0) CurrentHealth = 0;
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            isDead = true;
+            StartCoroutine(GameOver.GameOverScene());
+        }
         HealthBar.SetHealth(CurrentHealth);
     }
-
     public void Heal()
     {
         float newHealth = CurrentHealth;
         if (newHealth == CurrentHealth)
         {
-            CurrentHealth += 10;
+            CurrentHealth += 20;
             if (CurrentHealth > 100) CurrentHealth = 100;
-         //   Debug.Log(CurrentHealth + "->>>>>>>>>>>>>>>>>>>>> PLAYER HEALED");
             HealthBar.SetHealth(CurrentHealth);
         }
     }

@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation,rotationSpeed * Time.deltaTime);
             _rigidbody2D.velocity = Vector2.zero;
             _rigidbody2D.angularVelocity = 0;
+            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -33f, 33f), Mathf.Clamp(transform.position.y, -17f, 17f));
         }
     }
     

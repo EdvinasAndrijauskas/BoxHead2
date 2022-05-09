@@ -13,7 +13,10 @@ public class ZombieEnemy : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        target = GameObject.FindWithTag("Soldier");
+        if (PlayerHealth.isDead == false)
+        {
+            target = GameObject.FindWithTag("Soldier");
+        }
         rb = GetComponent<Rigidbody2D>();
         anim.SetFloat("Speed", moveSpeed);
     }
@@ -39,7 +42,7 @@ public class ZombieEnemy : MonoBehaviour
         {
             anim.SetTrigger("Attack");
             col.gameObject.GetComponent<PlayerHealth>().Damage(20);
-          if (!col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0)) return;
+            if (!PlayerHealth.isDead) return;
             target = null;
             col.gameObject.GetComponent<PlayerMovement>().enabled = false;
             col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByZombie");
