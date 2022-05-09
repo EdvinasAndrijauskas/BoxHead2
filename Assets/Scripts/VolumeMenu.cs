@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class VolumeMenu : MonoBehaviour
 {
+    public AudioMixer _AudioMixer;
     [SerializeField] private GameObject _pauseMenuScene;
     [SerializeField] private GameObject _weaponMenuScene;
     [SerializeField] private GameObject _levelMenuScene;
     [SerializeField] private GameObject _OptionMenuScene;
-    // Start is called before the first frame update
+   
+    // Update is called once per frame
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -14,10 +17,9 @@ public class VolumeMenu : MonoBehaviour
             BackButton();
         }
     }
-    // Update is called once per frame
-    public void setVolume()
-    { 
-        
+    public void setVolume(float volume)
+    {
+        _AudioMixer.SetFloat("volume", volume);
     }
     
     public void BackButton()

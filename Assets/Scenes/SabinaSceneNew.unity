@@ -814,6 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead81ab125b1d964f85784fc9bf2bc03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AudioMixer: {fileID: 24100000, guid: 9820b090d6ba2b946967ba6f56a02d19, type: 2}
   _pauseMenuScene: {fileID: 989273745}
   _weaponMenuScene: {fileID: 156854920}
   _levelMenuScene: {fileID: 543141148}
@@ -1813,6 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b398112a17f30384f83f3f1e7083ba44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AudioMixer: {fileID: 0}
   _pauseMenuScene: {fileID: 989273745}
   _weaponMenuScene: {fileID: 543141148}
   _levelMenuScene: {fileID: 156854920}

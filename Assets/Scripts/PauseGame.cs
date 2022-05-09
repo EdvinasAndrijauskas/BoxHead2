@@ -1,7 +1,4 @@
-using System.Collections;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseGame : MonoBehaviour
 {
@@ -52,10 +49,5 @@ public class PauseGame : MonoBehaviour
    {
       Debug.Log ("QUIT!");
       Application.Quit();
-   }
-
-   public void SetVolume()
-   {
-      Debug.Log("volume");
    }
 }
