@@ -15,11 +15,11 @@ namespace model
         public float fireRate;
         public int currentMagazineAmmo { get; set; }
         public int remainingBackupAmmo { get; set; }
-        public float reloadTime { get; set; }
+        public float reloadTime { get;  }
         public bool isRealoding { get; set; }
-        public string ammoType { get; set; }
+        public string ammoType { get; }
         public bool isLocked { get; set; }
-        public int unlockLevel { get; set; }
+        public int unlockLevel { get; }
         
         
         public Weapon(string weaponId, int magazineCapacity,float fireRate, float reloadTime, string ammoType,int unlockLevel, float bulletForce = -1, int maxBackupAmmo = -1)

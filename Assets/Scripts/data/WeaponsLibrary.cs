@@ -42,5 +42,17 @@ namespace data
                 }
             }
         }
+
+        public static void ResetWeapons()
+        {
+            foreach (var weapon in Weapons)
+            {
+                if (weapon.weaponId != WeaponId.Pistol.ToString())
+                {
+                    weapon.isLocked = true;
+                }
+                weapon.RefillAmmo();
+            }
+        }
     }
 }
