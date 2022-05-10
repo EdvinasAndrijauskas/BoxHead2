@@ -109,7 +109,10 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
 
     private void UpdateUI(Weapon weapon)
     {
-        GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponAmmo(weapon);
+        if (PauseGame.GameIsPaused != true)
+        {
+            GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponAmmo(weapon);
+        }
     }
 
     private void StartShooting()

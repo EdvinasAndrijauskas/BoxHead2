@@ -73,3 +73,6 @@ TagManager:
   - name: Explosion
     uniqueID: 2228896739
     locked: 0
+  - name: Laser
+    uniqueID: 1109805099
+    locked: 0

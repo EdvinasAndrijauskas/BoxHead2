@@ -18,7 +18,11 @@ public class ShootingEnemy : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Soldier").transform;
+        if (PlayerHealth.isDead == false)
+        {
+            player = GameObject.FindGameObjectWithTag("Soldier").transform;
+
+        }
         timeBtwShots = startTimeBtwShots;
         _facingRight = false;
     }
@@ -52,7 +56,6 @@ public class ShootingEnemy : MonoBehaviour
             {
                 transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
             }
-
             Shooting();
         }
     }
@@ -61,9 +64,7 @@ public class ShootingEnemy : MonoBehaviour
     {
         if (timeBtwShots <= 0)
         {
-            if (!GameObject.FindGameObjectWithTag("Soldier").GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
-            {
-                if (_facingRight)
+            if (_facingRight)
                 {
                     Instantiate(leftFlame, transform.position, Quaternion.identity);
                     timeBtwShots = startTimeBtwShots;
@@ -73,7 +74,6 @@ public class ShootingEnemy : MonoBehaviour
                     Instantiate(rightFlame, transform.position, Quaternion.identity);
                     timeBtwShots = startTimeBtwShots;
                 }
-            }
         }
         else
         {

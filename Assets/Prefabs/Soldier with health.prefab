@@ -80,10 +80,11 @@ PrefabInstance:
     - target: {fileID: 799261148756057502, guid: 9908ce52b9bf3754a9dc01dfef8a499f,
         type: 3}
       propertyPath: m_Name
-      value: SoldierEdvinas Variant
+      value: Soldier with health
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 535719886942338169, guid: 9908ce52b9bf3754a9dc01dfef8a499f, type: 3}
+    - {fileID: 799261148756057474, guid: 9908ce52b9bf3754a9dc01dfef8a499f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9908ce52b9bf3754a9dc01dfef8a499f, type: 3}
 --- !u!1 &2982100509362169990 stripped
 GameObject:
