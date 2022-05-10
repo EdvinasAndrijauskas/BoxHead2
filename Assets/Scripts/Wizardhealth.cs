@@ -7,6 +7,7 @@ public class Wizardhealth : MonoBehaviour, IHealthSystem
     public float Health { get; set; }
     public float CurrentHealth { get; set; }
     [SerializeField] private HealthBar HealthBar;
+    
 
     // Start is called before the first frame update
     private void Start()
@@ -19,7 +20,13 @@ public class Wizardhealth : MonoBehaviour, IHealthSystem
     public void Damage(float damage)
     {
         CurrentHealth -= damage;
-        if (CurrentHealth < 0) CurrentHealth = 0;
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            Score.points += 15;
+
+        }
+        
         HealthBar.SetHealth(CurrentHealth);
     }
 }
