@@ -8,12 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 98a62148bd30c6947b2d18a8eff7c3ae
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SabinaSceneNew.unity
-    guid: d009c1a56064bfe4db35001b5decb03a
+    path: Assets/Scenes/MiroslavScene.unity
+    guid: 3dc8862f1dd636a4fa07ab7e34e38fbb
   - enabled: 1
     path: Assets/Scenes/PauseGame.unity
     guid: db61d6fd37ca8f34698f80adf83848df

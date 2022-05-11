@@ -48,16 +48,16 @@ public class WeaponShooting : MonoBehaviour, IWeaponShooting
             IsRealoding();
 
             // Check if weapon is locked
-            /*int nextWeaponIndex = _currentWeaponIndex;
+            int nextWeaponIndex = _currentWeaponIndex;
             if (nextWeaponIndex + 1 < _weapons.Count && !_weapons[++nextWeaponIndex].isLocked)
-            {*/
+            {
                 if (_currentWeaponIndex < _weapons.Count - 1) 
                 {
                     _currentWeaponIndex += 1;
                     _currentWeapon = _weapons[_currentWeaponIndex];
                     GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.weaponId);
                 }
-            //}
+            }
             
         }
         

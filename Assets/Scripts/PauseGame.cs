@@ -3,9 +3,9 @@ using UnityEngine;
 public class PauseGame : MonoBehaviour
 {
    public static bool GameIsPaused = false;
-   [SerializeField] private GameObject _pauseMenuScene;
-   [SerializeField] private GameObject _weaponMenuScene;
-   [SerializeField] private GameObject _levelMenuScene;
+   [SerializeField] private GameObject _pauseMenuCanvas;
+   [SerializeField] private GameObject _weaponMenuCanvas;
+   [SerializeField] private GameObject _levelMenuCanvas;
    [SerializeField] private GameObject _OptionMenuScene;
    [SerializeField] private GameObject _SceneChangerCanvas;
    
@@ -28,18 +28,18 @@ public class PauseGame : MonoBehaviour
 
    public void Resume()
    { 
-      _pauseMenuScene.SetActive(false);
-      _weaponMenuScene.SetActive(true);
-      _levelMenuScene.SetActive(true);
+      _pauseMenuCanvas.SetActive(false);
+      _weaponMenuCanvas.SetActive(true);
+      _levelMenuCanvas.SetActive(true);
       Time.timeScale = 1f;
       GameIsPaused = false;
    }
 
    private void Pause()
    {
-       _pauseMenuScene.SetActive(true);
-      _weaponMenuScene.SetActive(false);
-      _levelMenuScene.SetActive(false);
+       _pauseMenuCanvas.SetActive(true);
+      _weaponMenuCanvas.SetActive(false);
+      _levelMenuCanvas.SetActive(false);
       SceneChanger.toTriggerFadeOut = false;
       Time.timeScale = 0f;
       GameIsPaused = true;

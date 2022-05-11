@@ -73,8 +73,8 @@ public class EnemySpawner : MonoBehaviour
         _state = SpawnState.Counting;
         waveCountdown = timeBetweenWaves;
         countDownCanvas.SetActive(true);
-        
-     
+
+        Score.points += _waveNumber * 10;
         WeaponLibrary.UnlockWeapon(_waveNumber);
         SpawnSupplyBox();
     }
