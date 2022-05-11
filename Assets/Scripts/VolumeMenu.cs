@@ -20,11 +20,11 @@ public class VolumeMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            BackButton();
+            BackButtonPause();
         }
     }
 
-    public void BackButton()
+    public void BackButtonPause()
     { 
         PlayerPrefs.SetFloat("VolumeValue", _slider.value);
         _pauseMenuScene.SetActive(true);
@@ -45,4 +45,5 @@ public class VolumeMenu : MonoBehaviour
         _slider.value = volume;
         AudioListener.volume = volume;
     }
+    
 }

@@ -1253,7 +1253,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 859219205}
         m_TargetAssemblyTypeName: VolumeMenu, Assembly-CSharp
-        m_MethodName: BackButton
+        m_MethodName: BackButtonPause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3645,6 +3645,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 3784833169533550556, guid: 3495d36fae3b3734e8917dfa06e77ffd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3784833169533550557, guid: 3495d36fae3b3734e8917dfa06e77ffd,
         type: 3}
       propertyPath: wizard
@@ -3962,7 +3967,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4161,6 +4166,75 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1001 &5573159726080139266
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5573159726653305241, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573159726653305247, guid: 0a550c945a1f9334b98deee5207dc903,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a550c945a1f9334b98deee5207dc903, type: 3}
 --- !u!1001 &5880948010834350391
 PrefabInstance:
   m_ObjectHideFlags: 0
