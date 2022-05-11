@@ -21,7 +21,7 @@ namespace data
         public static List<Weapon> Weapons = new List<Weapon>
         {
             new Weapon(WeaponId.Pistol.ToString(),7,  5f,  1f,Ammo.Bullet.ToString(),1,50f),
-            new Weapon(WeaponId.Shotgun.ToString(),12, 5f,1.5f, Ammo.Bullet.ToString(),2,75f,24),
+            new Weapon(WeaponId.Shotgun.ToString(),12, 2.5f,1.5f, Ammo.Bullet.ToString(),2,75f,24),
             new Weapon(WeaponId.Rifle.ToString(),30 , 10f,1.5f,Ammo.Bullet.ToString(),4,50f,60),
             new Weapon(WeaponId.GrenadeLauncher.ToString(),4, 1f,1.5f,Ammo.EMP_Grenade.ToString(),6,50f,12 ),
             new Weapon(WeaponId.Flamethrower.ToString(),28, 3f,2f,Ammo.Flame.ToString() ,8,maxBackupAmmo: 28),

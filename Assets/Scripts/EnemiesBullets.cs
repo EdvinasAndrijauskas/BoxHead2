@@ -32,15 +32,15 @@ public class EnemiesBullets : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.collider.tag.Equals("Soldier"))
+        if (col.tag.Equals("Soldier"))
         {
             col.gameObject.GetComponent<PlayerHealth>().Damage(30);
             if (col.gameObject.GetComponent<PlayerHealth>().CurrentHealth.Equals(0))
             {
                 //THIS ONE IS FOR OLD Spawner
-               // EnemySpawner.spawnAllowed = false;
+                // EnemySpawner.spawnAllowed = false;
                 col.gameObject.GetComponent<Animator>().SetTrigger("isDeadByWizard");
                 col.gameObject.GetComponent<PlayerMovement>().enabled = false;
                 Destroy(col.gameObject, 1.5f);
