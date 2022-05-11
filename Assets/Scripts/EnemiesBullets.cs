@@ -7,6 +7,11 @@ public class EnemiesBullets : MonoBehaviour
 {
     [SerializeField] private float speed;
 
+    private void Awake()
+    {
+        gameObject.layer = LayerMask.NameToLayer ("Ignore Raycast");
+    }
+
     // Start is called before the first frame update
     private Transform _player;
     private Vector2 _target;

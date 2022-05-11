@@ -1,4 +1,4 @@
-﻿namespace DefaultNamespace
+﻿namespace weapon
 {
     public interface IWeaponShooting
     {

@@ -1,5 +1,5 @@
 using System;
-using DefaultNamespace;
+using sfx;
 using UnityEngine;
 
 namespace SFX
@@ -7,13 +7,13 @@ namespace SFX
     public class AudioManager : MonoBehaviour
     {
         [SerializeField] private Sound[] weaponSounds;
-        private static AudioManager instance;
+        private static AudioManager _instance;
         
         private void Awake()
         {
-            if (instance == null)
+            if (_instance == null)
             {
-                instance = this;
+                _instance = this;
             }
             else
             {

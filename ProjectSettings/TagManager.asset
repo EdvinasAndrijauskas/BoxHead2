@@ -32,7 +32,6 @@ TagManager:
   - UnlockedText
   - WeaponSound
   - WeaponImage
-  - Ignore Raycast
   layers:
   - Default
   - TransparentFX

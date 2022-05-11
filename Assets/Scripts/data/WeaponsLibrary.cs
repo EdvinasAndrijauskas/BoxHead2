@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using model;
 using UnityEngine;
+using weapon;
+
 namespace data
 {
     enum WeaponId
@@ -32,12 +34,12 @@ namespace data
         {
             for (int i = 1; i < Weapons.Count; i++)
             {
-                if (Weapons[i].unlockLevel == level)
+                if (Weapons[i].UnlockLevel == level)
                 {
-                    GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().EnabledText(Weapons[i].weaponId);
+                    GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().EnabledText(Weapons[i].WeaponId);
                     
-                    Debug.Log(Weapons[i].weaponId + " UNLOCKED");
-                    Weapons[i].isLocked = false;
+                    Debug.Log(Weapons[i].WeaponId + " UNLOCKED");
+                    Weapons[i].IsLocked = false;
                     return;
                 }
             }
@@ -47,9 +49,9 @@ namespace data
         {
             foreach (var weapon in Weapons)
             {
-                if (weapon.weaponId != WeaponId.Pistol.ToString())
+                if (weapon.WeaponId != WeaponId.Pistol.ToString())
                 {
-                    weapon.isLocked = true;
+                    weapon.IsLocked = true;
                 }
                 weapon.RefillAmmo();
             }

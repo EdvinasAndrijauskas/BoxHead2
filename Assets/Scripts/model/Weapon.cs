@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using data;
+using System.Globalization;
 using SFX;
 using UnityEngine;
 
@@ -8,98 +7,98 @@ namespace model
 {
     public class Weapon
     {
-        public string weaponId { get; set; }
-        private int maxBackupAmmo;  //immutable
-        private int magazineCapacity; //immutable
-        public float bulletForce;
-        public float fireRate;
-        public int currentMagazineAmmo { get; set; }
-        public int remainingBackupAmmo { get; set; }
-        public float reloadTime { get;  }
-        public bool isRealoding { get; set; }
-        public string ammoType { get; }
-        public bool isLocked { get; set; }
-        public int unlockLevel { get; }
+        public string WeaponId { get;  }
+        private readonly int _maxBackupAmmo;  //immutable
+        private readonly int _magazineCapacity; //immutable
+        public readonly float BulletForce;
+        public readonly float FireRate;
+        public int CurrentMagazineAmmo { get; private set; }
+        public int RemainingBackupAmmo { get; private set; }
+        public float ReloadTime { get;  }
+        public bool IsRealoding { get; set; }
+        public string AmmoType { get; }
+        public bool IsLocked { get; set; }
+        public int UnlockLevel { get; }
         
         
         public Weapon(string weaponId, int magazineCapacity,float fireRate, float reloadTime, string ammoType,int unlockLevel, float bulletForce = -1, int maxBackupAmmo = -1)
         {
-            this.weaponId = weaponId;
-            this.maxBackupAmmo = maxBackupAmmo;
-            this.magazineCapacity = magazineCapacity;
-            this.bulletForce = bulletForce;
-            this.fireRate = fireRate;
-            this.reloadTime = reloadTime;
-            this.ammoType = ammoType;
-            this.unlockLevel = unlockLevel;
+            this.WeaponId = weaponId;
+            this._maxBackupAmmo = maxBackupAmmo;
+            this._magazineCapacity = magazineCapacity;
+            this.BulletForce = bulletForce;
+            this.FireRate = fireRate;
+            this.ReloadTime = reloadTime;
+            this.AmmoType = ammoType;
+            this.UnlockLevel = unlockLevel;
 
-            currentMagazineAmmo = magazineCapacity;
-            remainingBackupAmmo = maxBackupAmmo;
-            isRealoding = false;
-            isLocked = weaponId != WeaponId.Pistol.ToString();
+            CurrentMagazineAmmo = magazineCapacity;
+            RemainingBackupAmmo = maxBackupAmmo;
+            IsRealoding = false;
+            IsLocked = weaponId != data.WeaponId.Pistol.ToString();
         }
 
         public void Shoot()
         {
-            currentMagazineAmmo--;
+            CurrentMagazineAmmo--;
         }
 
         public IEnumerator Reload()
         {
             int totalRemainingAmmo = TotalRemainingAmmo();
-            if (totalRemainingAmmo <= 0 && maxBackupAmmo != -1)
+            if (totalRemainingAmmo <= 0 && _maxBackupAmmo != -1)
             {
-                isRealoding = false;
+                IsRealoding = false;
                 Debug.Log("No Bullets");
                 //TODO: add sound
                 GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("EmptyMagazine");
             }
             else
             {
-                if (currentMagazineAmmo < magazineCapacity)
+                if (CurrentMagazineAmmo < _magazineCapacity)
                 {
-                    isRealoding = true;
+                    IsRealoding = true;
                     //TODO: Reload Sound 
-                    GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play(reloadTime.ToString());
-                    yield return new WaitForSeconds(reloadTime);
+                    GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play(ReloadTime.ToString(CultureInfo.InvariantCulture));
+                    yield return new WaitForSeconds(ReloadTime);
                 }
           
-                if (maxBackupAmmo == -1)
+                if (_maxBackupAmmo == -1)
                 {
-                    currentMagazineAmmo = magazineCapacity;
+                    CurrentMagazineAmmo = _magazineCapacity;
                 }
                 else
                 {
-                    int ammoBalanceInMagazine = magazineCapacity - currentMagazineAmmo;
+                    int ammoBalanceInMagazine = _magazineCapacity - CurrentMagazineAmmo;
                     
-                    if (ammoBalanceInMagazine >= remainingBackupAmmo)
+                    if (ammoBalanceInMagazine >= RemainingBackupAmmo)
                     {
-                        currentMagazineAmmo += remainingBackupAmmo;
-                        remainingBackupAmmo = 0;
+                        CurrentMagazineAmmo += RemainingBackupAmmo;
+                        RemainingBackupAmmo = 0;
                     }
                     else
                     {
-                        remainingBackupAmmo -= ammoBalanceInMagazine; 
-                        currentMagazineAmmo += ammoBalanceInMagazine;
+                        RemainingBackupAmmo -= ammoBalanceInMagazine; 
+                        CurrentMagazineAmmo += ammoBalanceInMagazine;
                     }
                 }
             }
         }
         public int TotalRemainingAmmo()
         {
-            if (weaponId == WeaponId.Pistol.ToString()) return -1;
-            return remainingBackupAmmo + currentMagazineAmmo;
+            if (WeaponId == data.WeaponId.Pistol.ToString()) return -1;
+            return RemainingBackupAmmo + CurrentMagazineAmmo;
         }
 
         public void RefillAmmo()
         {
-            currentMagazineAmmo = magazineCapacity;
-            remainingBackupAmmo = maxBackupAmmo;
+            CurrentMagazineAmmo = _magazineCapacity;
+            RemainingBackupAmmo = _maxBackupAmmo;
         }
 
         public bool AmmoUsed()
         {
-            if (currentMagazineAmmo == magazineCapacity && remainingBackupAmmo == maxBackupAmmo)
+            if (CurrentMagazineAmmo == _magazineCapacity && RemainingBackupAmmo == _maxBackupAmmo)
             {
                 return false;
             }

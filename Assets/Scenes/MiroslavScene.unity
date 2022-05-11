@@ -1962,6 +1962,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: WeaponInformation
       objectReference: {fileID: 0}
+    - target: {fileID: 5880948011931626251, guid: 1072e773f4cdb39458c84dc4356a12f7,
+        type: 3}
+      propertyPath: m_Text
+      value: '*'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880948011931626251, guid: 1072e773f4cdb39458c84dc4356a12f7,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: c9f6d0e7bc8541498c9a4799ba184ede,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 5880948010317742867, guid: 1072e773f4cdb39458c84dc4356a12f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1072e773f4cdb39458c84dc4356a12f7, type: 3}
