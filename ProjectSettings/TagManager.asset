@@ -33,6 +33,7 @@ TagManager:
   - WeaponSound
   - WeaponImage
   - Ignore Raycast
+  - ScoreText
   layers:
   - Default
   - TransparentFX

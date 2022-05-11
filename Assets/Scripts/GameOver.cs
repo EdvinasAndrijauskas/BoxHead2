@@ -1,12 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    
     public void QuitGame()
         {
             Debug.Log ("QUIT!");
@@ -15,9 +12,10 @@ public class GameOver : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("SabinaSceneNew");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         SceneChanger.toTriggerFadeOut = false;
         PlayerHealth.isDead = false;
+        Score.points = 0;
         Debug.Log("RESTART");
     }
 
@@ -26,6 +24,11 @@ public class GameOver : MonoBehaviour
         if (!PlayerHealth.isDead) yield break;
         SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    }
+    
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
     }
 }
