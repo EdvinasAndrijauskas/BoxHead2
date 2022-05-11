@@ -26,7 +26,7 @@ namespace data
             new Weapon(WeaponId.GrenadeLauncher.ToString(),4, 1f,1.5f,Ammo.EMP_Grenade.ToString(),6,50f,12 ),
             new Weapon(WeaponId.Flamethrower.ToString(),28, 3f,2f,Ammo.Flame.ToString() ,8,maxBackupAmmo: 28),
             new Weapon(WeaponId.Javelin.ToString(),1, 1f,2f,Ammo.Missile.ToString(),10,100f ,2),
-            new Weapon(WeaponId.Railgun.ToString(),12, 1f,2f,Ammo.Laser.ToString(),12,maxBackupAmmo: 12 ),
+            new Weapon(WeaponId.Railgun.ToString(),12, 2f,2f,Ammo.Laser.ToString(),12,maxBackupAmmo: 12 ),
         };
         
         

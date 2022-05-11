@@ -41,13 +41,9 @@ namespace supplybox
                 Debug.Log("All Ammo is full");
                 return "All Ammo is full";
             }
-            else
-            {
-                Debug.Log(unlockedWeapons[index].WeaponId);
-                unlockedWeapons[index].RefillAmmo();
-                return unlockedWeapons[index].WeaponId;
-            }
-        
+            Debug.Log(unlockedWeapons[index].WeaponId);
+            unlockedWeapons[index].RefillAmmo();
+            return unlockedWeapons[index].WeaponId;
         }
 
         private void OnTriggerEnter2D(Collider2D col)

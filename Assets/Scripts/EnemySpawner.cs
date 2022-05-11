@@ -111,7 +111,15 @@ public class EnemySpawner : MonoBehaviour
         
         for (int i = 0; i < howManyEnemiesToSpawn ; i++)
         {
-            var spawningEnemy = Random.value <= 0.15 ? wizard : zombie;
+            Transform spawningEnemy;
+            if (_waveNumber >= 3)
+            {
+                spawningEnemy = Random.value <= 0.10 ? wizard : zombie;
+            }
+            else
+            {
+                spawningEnemy = zombie;
+            }
             if (_newPercentageValueForSpawningWizard <= 0.4)
             {
                 if (_waveNumber % 5 == 0)
