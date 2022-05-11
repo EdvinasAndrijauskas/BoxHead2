@@ -1,14 +1,14 @@
+using SFX;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class VolumeMenu : MonoBehaviour
 {
-    public AudioMixer _AudioMixer;
     [SerializeField] private GameObject _pauseMenuScene;
     [SerializeField] private GameObject _weaponMenuScene;
     [SerializeField] private GameObject _levelMenuScene;
     [SerializeField] private GameObject _OptionMenuScene;
-   
+
     // Update is called once per frame
     private void Update()
     {
@@ -17,11 +17,7 @@ public class VolumeMenu : MonoBehaviour
             BackButton();
         }
     }
-    public void setVolume(float volume)
-    {
-        _AudioMixer.SetFloat("volume", volume);
-    }
-    
+
     public void BackButton()
     { 
         _pauseMenuScene.SetActive(true);
