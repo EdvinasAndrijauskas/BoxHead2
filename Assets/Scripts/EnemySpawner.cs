@@ -76,7 +76,10 @@ public class EnemySpawner : MonoBehaviour
 
         Score.points += _waveNumber * 10;
         WeaponLibrary.UnlockWeapon(_waveNumber);
-        SpawnSupplyBox();
+        if (_waveNumber > 2)
+        {
+            SpawnSupplyBox();
+        }
     }
 
     private void SpawnSupplyBox()
