@@ -106,7 +106,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         _state = SpawnState.Spawning;
-        var howManyEnemiesToSpawn = 6 + _waveNumber * _waveNumber/2;
+        var howManyEnemiesToSpawn = 3 + _waveNumber * _waveNumber/2;
       
         
         for (int i = 0; i < howManyEnemiesToSpawn ; i++)
