@@ -13,7 +13,6 @@ public class VolumeMenu : MonoBehaviour
     private void Start()
     {
         VolumeSlider();
-        PauseGame.inOptions = true;
     }
     
     // Update is called once per frame
@@ -33,7 +32,6 @@ public class VolumeMenu : MonoBehaviour
         _levelMenuScene.SetActive(false);
         _OptionMenuScene.SetActive(false);
         LoadValues();
-        PauseGame.inOptions = false;
     }
 
     public void VolumeSlider()

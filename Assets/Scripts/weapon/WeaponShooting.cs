@@ -110,7 +110,7 @@ namespace weapon
 
         private void UpdateUI(Weapon weapon)
         {
-            if (!PauseGame.GameIsPaused)
+            if (!PauseGame.GameIsPaused && GameObject.Find("WeaponInformation") != null)
             {
                 GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponAmmo(weapon);
             }

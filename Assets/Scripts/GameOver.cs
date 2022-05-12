@@ -24,7 +24,7 @@ public class GameOver : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        SceneChanger.toTriggerFadeOut = false;
+        // SceneChanger.toTriggerFadeOut = false;
         PlayerHealth.isDead = false;
         Score.points = 0;
         Debug.Log("RESTART");
@@ -33,7 +33,7 @@ public class GameOver : MonoBehaviour
     public static IEnumerator GameOverScene()
     {
         if (!PlayerHealth.isDead) yield break;
-        SceneChanger.toTriggerFadeOut = true;
+        // SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
         GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("GameOver");
         WeaponLibrary.ResetWeapons();
