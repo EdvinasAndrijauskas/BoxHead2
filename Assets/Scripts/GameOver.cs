@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using SFX;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,7 +22,7 @@ public class GameOver : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         SceneChanger.toTriggerFadeOut = false;
         PlayerHealth.isDead = false;
         Score.points = 0;
@@ -31,13 +32,15 @@ public class GameOver : MonoBehaviour
     public static IEnumerator GameOverScene()
     {
         if (!PlayerHealth.isDead) yield break;
+        SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("GameOver");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         Score.points = 0;
     }
 }

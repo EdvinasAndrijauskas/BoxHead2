@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour, IHealthSystem
 
@@ -23,13 +20,12 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     public void Damage(float damage)
     {
         CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        if (CurrentHealth < 0)
         {
             CurrentHealth = 0;
             isDead = true;
             StartCoroutine(GameOver.GameOverScene());
         }
-
         HealthBar.SetHealth(CurrentHealth);
     }
 

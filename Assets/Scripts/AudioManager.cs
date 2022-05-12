@@ -7,13 +7,14 @@ namespace SFX
     public class AudioManager : MonoBehaviour
     {
         [SerializeField] private Sound[] weaponSounds;
-        private static AudioManager instance;
+        public static AudioManager instance;
         
         private void Awake()
         {
             if (instance == null)
             {
                 instance = this;
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
@@ -40,14 +41,17 @@ namespace SFX
             Sound audioSource = Array.Find(weaponSounds, sound => sound.soundName == audioName);
             audioSource.source.PlayOneShot(audioSource.soundClip);
         }
-        
-        
-        
+
         public void Stop(string audioName)
         {
             Sound audioSource = Array.Find(weaponSounds, sound => sound.soundName == audioName);
             audioSource.source.Stop();
-        } 
-       
+        }
+
+        public void ChangeMasterVolume(float value)
+        {
+            AudioListener.volume = value;
+        }
+
     }
 }
