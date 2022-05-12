@@ -30,6 +30,15 @@ namespace SFX
             }
         }
 
+        private void Update()
+        {
+            if (PlayerHealth.isDead)
+            {
+                Stop("FlameMiddle");
+            }
+        }
+
+
         public void Play(string audioName)
         {
             Sound audioSource = Array.Find(weaponSounds, sound => sound.soundName == audioName);

@@ -464,6 +464,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[7].soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 05f873a84565f014e862ddf1d65d55f6, type: 3}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[7].soundName
+      value: EMP_Grenade
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[8].soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 08806142fbbda604db0f727802bbf003, type: 3}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[8].soundName
+      value: Missile
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[9].soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 078e9c62a8c40ca48b9b7d6479f7b34a, type: 3}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[9].soundName
+      value: Laser
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[10].soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 14bc3ae18010cdd4085694de07c672f1, type: 3}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[10].soundName
+      value: SupplyBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[11].soundClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e281a18ea3a88d148b28a0675f70ec84, type: 3}
+    - target: {fileID: 1543918745778190608, guid: 3b74c932be5146a45a97904855cd37ba,
+        type: 3}
+      propertyPath: weaponSounds.Array.data[11].soundName
+      value: GameOver
+      objectReference: {fileID: 0}
     - target: {fileID: 1543918745778190609, guid: 3b74c932be5146a45a97904855cd37ba,
         type: 3}
       propertyPath: m_RootOrder
