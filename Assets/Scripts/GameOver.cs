@@ -1,6 +1,7 @@
 using System.Collections;
-using TMPro;
+using data;
 using SFX;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +36,7 @@ public class GameOver : MonoBehaviour
         SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
         GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("GameOver");
+        WeaponLibrary.ResetWeapons();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

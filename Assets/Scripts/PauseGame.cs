@@ -3,6 +3,7 @@ using UnityEngine;
 public class PauseGame : MonoBehaviour
 {
    public static bool GameIsPaused = false;
+   public static bool inOptions = false;
    [SerializeField] private GameObject _pauseMenuCanvas;
    [SerializeField] private GameObject _weaponMenuCanvas;
    [SerializeField] private GameObject _levelMenuCanvas;
@@ -12,16 +13,18 @@ public class PauseGame : MonoBehaviour
    // Update is called once per frame
    private void Update()
    {
-      if (Input.GetKeyDown(KeyCode.Escape))
+      if (!inOptions)
       {
-         if (GameIsPaused)
+         if (Input.GetKeyDown(KeyCode.Escape))
          {
-
-            Resume();
-         }
-         else
-         {
-            Pause();
+            if (GameIsPaused)
+            {
+               Resume();
+            }
+            else
+            {
+               Pause();
+            }
          }
       }
    }
@@ -33,6 +36,7 @@ public class PauseGame : MonoBehaviour
       _levelMenuCanvas.SetActive(true);
       Time.timeScale = 1f;
       GameIsPaused = false;
+      inOptions = false;
    }
 
    private void Pause()
@@ -43,6 +47,7 @@ public class PauseGame : MonoBehaviour
       SceneChanger.toTriggerFadeOut = false;
       Time.timeScale = 0f;
       GameIsPaused = true;
+      inOptions = true;
    }
 
    public void QuitGame()

@@ -32,6 +32,7 @@ TagManager:
   - UnlockedText
   - WeaponSound
   - WeaponImage
+  - EnemyBullet
   - Ignore Raycast
   - ScoreText
   layers:

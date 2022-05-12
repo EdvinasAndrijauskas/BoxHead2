@@ -7,7 +7,7 @@ namespace model.ammo
     {
         public GameObject explosion;
         private float _countdown;
-        private float _explosionRadius = 8;
+        private float _explosionRadius = 5;
 
         [SerializeField] private float ammoDamage;
 

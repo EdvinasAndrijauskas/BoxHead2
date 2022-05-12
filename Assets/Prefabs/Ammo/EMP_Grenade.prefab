@@ -146,5 +146,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 2080798237173758379, guid: 629c72e1cd4d98344a471f85cfd0be1b,
     type: 3}
-  timeToExplode: 1.5
   ammoDamage: 50

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DefaultNamespace
+namespace sfx
 {
     [System.Serializable]
     public class Sound {
