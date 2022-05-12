@@ -52,5 +52,6 @@ namespace SFX
         {
             AudioListener.volume = value;
         }
+
     }
 }

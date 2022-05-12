@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using SFX;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
@@ -26,6 +27,8 @@ public class GameOver : MonoBehaviour
         if (!PlayerHealth.isDead) yield break;
         SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        GameObject.FindGameObjectWithTag("WeaponSound").GetComponent<AudioManager>().Play("GameOver");
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
