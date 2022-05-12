@@ -24,7 +24,8 @@ public class GameOver : MonoBehaviour
         if (!PlayerHealth.isDead) yield break;
         SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        
     }
     
     public void MainMenu()
