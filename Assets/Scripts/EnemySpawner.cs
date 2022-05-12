@@ -73,7 +73,8 @@ public class EnemySpawner : MonoBehaviour
         _state = SpawnState.Counting;
         waveCountdown = timeBetweenWaves;
         countDownCanvas.SetActive(true);
-
+        _waveNumber++;
+        levelCounter.text = _waveNumber.ToString();
         Score.points += _waveNumber * 10;
         WeaponLibrary.UnlockWeapon(_waveNumber);
         if (_waveNumber > 2)
@@ -106,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         _state = SpawnState.Spawning;
-        var howManyEnemiesToSpawn = 3 + _waveNumber * _waveNumber/2;
+        var howManyEnemiesToSpawn = 2 + _waveNumber * _waveNumber/2;
       
         
         for (int i = 0; i < howManyEnemiesToSpawn ; i++)
@@ -134,8 +135,7 @@ public class EnemySpawner : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
 
-        _waveNumber++;
-        levelCounter.text = _waveNumber.ToString();
+        
         _state = SpawnState.Waiting;
     }
     private void SpawnAnEnemy(Transform enemy)

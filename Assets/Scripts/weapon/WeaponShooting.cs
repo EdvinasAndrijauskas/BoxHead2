@@ -49,16 +49,16 @@ namespace weapon
                 IsRealoding();
 
                 // Check if weapon is locked
-                int nextWeaponIndex = _currentWeaponIndex;
+                /*int nextWeaponIndex = _currentWeaponIndex;
                 if (nextWeaponIndex + 1 < _weapons.Count && !_weapons[++nextWeaponIndex].IsLocked)
-                {
+                {*/
                     if (_currentWeaponIndex < _weapons.Count - 1) 
                     {
                         _currentWeaponIndex += 1;
                         _currentWeapon = _weapons[_currentWeaponIndex];
                         GameObject.Find("WeaponInformation").GetComponent<WeaponInformation>().UpdateWeaponImage(_currentWeapon.WeaponId);
                     }
-                }
+               // }
             
             }
         
@@ -237,11 +237,11 @@ namespace weapon
         {
             Instantiate(FindProjectile(ammo), firePoint.position, firePoint.rotation);
         }
-    
+
         public void LaserShooting(string ammo)
         {
             var position = firePoint.position;
-            RaycastHit2D hit = Physics2D.Raycast(position, firePoint.up,100f);
+            RaycastHit2D hit = Physics2D.Raycast(position, firePoint.up, 100f);
             GameObject laser = Instantiate(FindProjectile(ammo), position, firePoint.rotation);
 
             if (hit.collider != null)
@@ -254,7 +254,6 @@ namespace weapon
                 laser.GetComponent<Laser>().SetTargetPosition(endPosition);
             }
         }
-
     }
 }
 
