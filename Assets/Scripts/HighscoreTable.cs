@@ -10,6 +10,7 @@ public class HighscoreTable : MonoBehaviour
     private Transform entryTemplate;
     private List<Transform> highscoreEntryTransformList;
 
+
     private void Awake()
     {
         entryContainer = transform.Find("highscoreEntryContainer");
@@ -17,28 +18,14 @@ public class HighscoreTable : MonoBehaviour
 
         entryTemplate.gameObject.SetActive(false);
 
-        //player is set to dead and only resets to false when you restart the game
-        if (PlayerHealth.isDead)
-        {
-            AddHighscoreEntry(Score.points);
-        }
-
-        string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
-        Debug.Log(jsonString);
+        AddHighscoreEntry(Score.points);
+        var jsonString = PlayerPrefs.GetString("highscoreTable");
+        var highscores = JsonUtility.FromJson<Highscores>(jsonString);
 
         if (highscores != null)
         {
-            // Sort entry list by Score
+            // Sort entry list by Score and keep max 12 highscores
             highscores.highscoreEntryList.Sort((x, y) => y.score.CompareTo(x.score));
-
-            if (highscores.highscoreEntryList.Count > 12)
-            {
-                for (int h = highscores.highscoreEntryList.Count; h > 12; h--)
-                {
-                    highscores.highscoreEntryList.RemoveAt(12);
-                }
-            }
 
             highscoreEntryTransformList = new List<Transform>();
             foreach (HighscoreEntry highscoreEntry in highscores.highscoreEntryList)
@@ -88,7 +75,7 @@ public class HighscoreTable : MonoBehaviour
         transformList.Add(entryTransform);
     }
 
-    private void AddHighscoreEntry(int score)
+    public void AddHighscoreEntry(int score)
     {
         // Create HighscoreEntry
         HighscoreEntry highscoreEntry = new HighscoreEntry {score = score};
@@ -109,13 +96,8 @@ public class HighscoreTable : MonoBehaviour
         // Add new entry to Highscores
         highscores.highscoreEntryList.Add(highscoreEntry);
 
-        if (highscores.highscoreEntryList.Count > 12)
-        {
-            for (int h = highscores.highscoreEntryList.Count; h > 12; h--)
-            {
-                highscores.highscoreEntryList.RemoveAt(12);
-            }
-        }
+        // Sort entry list by Score
+        SortList(highscores.highscoreEntryList);
 
         // Save updated Highscores
         string json = JsonUtility.ToJson(highscores);
@@ -128,6 +110,17 @@ public class HighscoreTable : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
     }
 
+    private void SortList(List<HighscoreEntry> highscores)
+    {
+        highscores.Sort((x, y) => y.score.CompareTo(x.score));
+        if (highscores.Count > 12)
+        {
+            for (int h = highscores.Count; h > 12; h--)
+            {
+                highscores.RemoveAt(12);
+            }
+        }
+    }
 
     [Serializable]
     private class HighscoreEntry

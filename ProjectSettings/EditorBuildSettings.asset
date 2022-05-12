@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/PauseGame.unity
     guid: db61d6fd37ca8f34698f80adf83848df
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+    path: Assets/Scenes/GameOverScene.unity
     guid: c538555ad39934a4bb8cbc1e32c60574
   - enabled: 1
     path: Assets/Scenes/Highscores.unity

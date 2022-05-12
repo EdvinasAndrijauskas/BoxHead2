@@ -1,14 +1,23 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    [SerializeField] private GameObject scoreText;
+
+    void Start()
+    {
+        TextMeshProUGUI textMeshProLable = scoreText.GetComponent<TextMeshProUGUI>();
+        textMeshProLable.text = "Score: " + Score.points;
+    }
+
     public void QuitGame()
-        {
-            Debug.Log ("QUIT!");
-            Application.Quit();
-        }
+    {
+        Debug.Log("QUIT!");
+        Application.Quit();
+    }
 
     public void RestartGame()
     {
@@ -22,14 +31,13 @@ public class GameOver : MonoBehaviour
     public static IEnumerator GameOverScene()
     {
         if (!PlayerHealth.isDead) yield break;
-        SceneChanger.toTriggerFadeOut = true;
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-        
     }
-    
+
     public void MainMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        Score.points = 0;
     }
 }

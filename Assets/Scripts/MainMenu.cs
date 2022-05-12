@@ -5,19 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    
     public void PlayGame()
     {
+        PlayerHealth.isDead = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
     public void QuitGame()
     {
-        Debug.Log ("QUIT!");
+        Debug.Log("QUIT!");
         Application.Quit();
-    }
-
-    public void Highscores()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
     }
 }

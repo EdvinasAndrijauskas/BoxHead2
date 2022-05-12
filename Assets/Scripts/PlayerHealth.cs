@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
     public static bool isDead = false;
 
     // Start is called before the first frame update
-    private  void Start()
+    private void Start()
     {
         Health = 100;
         CurrentHealth = Health;
@@ -29,8 +29,10 @@ public class PlayerHealth : MonoBehaviour, IHealthSystem
             isDead = true;
             StartCoroutine(GameOver.GameOverScene());
         }
+
         HealthBar.SetHealth(CurrentHealth);
     }
+
     public void Heal()
     {
         float newHealth = CurrentHealth;
