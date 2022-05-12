@@ -1,5 +1,6 @@
 using SFX;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
 
 public class VolumeMenu : MonoBehaviour
@@ -27,9 +28,9 @@ public class VolumeMenu : MonoBehaviour
     public void BackButtonPause()
     { 
         PlayerPrefs.SetFloat("VolumeValue", _slider.value);
-        _pauseMenuScene.SetActive(true);
-        _weaponMenuScene.SetActive(false);
-        _levelMenuScene.SetActive(false);
+        _pauseMenuScene.SetActive(false);
+        _weaponMenuScene.SetActive(true);
+        _levelMenuScene.SetActive(true);
         _OptionMenuScene.SetActive(false);
         LoadValues();
     }
